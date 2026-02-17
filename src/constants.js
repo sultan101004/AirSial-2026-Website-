@@ -1,0 +1,20 @@
+export const ASSETS = {
+    brandLogo: "/assets/brandLogo.png",
+    heroExterior: "/assets/heroExterior.png",
+    heroExteriorMobile: "/assets/heroExteriorMobile.png",
+    heroInterior: "/assets/heroInterior.png",
+    heroInteriorMobile: "/assets/heroInteriorMobile.png",
+    globeVideo: "/assets/globe_transparent.svg", // Fixed path
+    footerBackground: "/assets/footer_bg.gif",
+    crewImage: "/assets/crewImage.png",
+    foodImage: "/assets/foodImage.png",
+    seatImage: "/assets/seatImage.png",
+    cargoImage: "/assets/services/cargo.jpg",
+    baggageImage: "/assets/services/baggage.jpg",
+    destIslamabad: "/assets/destinations/Islamabad.png",
+    destJeddah: "/assets/destinations/Jeddah.png",
+    destKarachi: "/assets/destinations/Karachi.png",
+    destSialkot: "/assets/destinations/Sialkot.png",
+    destLahore: "/assets/destinations/Lahore.png",
+    destMuscat: "/assets/destinations/Muscat.png",
+};

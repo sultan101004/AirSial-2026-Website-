@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #111518;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  --bg-primary: #000000;
+  /* Default Dark */
+}
+
+.theme-green {
+  --bg-primary: #254F22;
+  /* Requested Green */
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: #ffffff;
+  transition: background-color 0.5s ease;
+  /* Smooth transition */
+}
+
+::selection {
+  background-color: #C0985A;
+  /* Accent Color */
+  color: #000000;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Custom Utilities */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Ensure links and buttons always show pointer */
+a, button {
+  cursor: pointer;
+}
