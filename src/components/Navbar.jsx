@@ -56,8 +56,8 @@ const Navbar = ({ onBookClick }) => {
     ];
 
     return (
-        <nav className="absolute top-12 left-0 w-full px-6 py-5 md:p-8 z-[100] pointer-events-none">
-            <div className="flex justify-between items-center relative w-full">
+        <nav className="absolute top-0 left-0 w-full px-6 py-5 md:p-8 z-[100] pointer-events-none">
+            <div className="flex justify-between items-center relative w-full pt-4 md:pt-0">
                 {/* Mobile Menu Button (Left) */}
                 <button
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

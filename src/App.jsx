@@ -60,8 +60,8 @@ const HeroSection = ({ onBookClick, onMenuClick }) => {
     const textY = useTransform(smoothProgress, [0, 0.2], [0, -50]); // Add upward movement for premium feel
 
     return (
-        <div ref={containerRef} className="h-[200vh] md:h-[250vh] relative bg-primary transition-colors duration-500"> {/* Reduced height for mobile */}
-            <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
+        <div ref={containerRef} className="h-[200vh] md:h-[250vh] relative bg-primary transition-colors duration-500"> {/* Kept height for scroll effect, but inner container handles view */}
+            <div className="sticky top-0 h-[100dvh] w-full overflow-hidden flex items-center justify-center">
 
                 {/* Layer 1: Interior (Revealed after zoom) */}
                 <motion.div
