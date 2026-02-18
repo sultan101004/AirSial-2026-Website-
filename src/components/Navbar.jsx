@@ -85,7 +85,7 @@ const Navbar = ({ onBookClick }) => {
                     <img
                         src={ASSETS.brandLogo}
                         alt="AirSial"
-                        className="h-8 md:h-12 w-auto object-contain drop-shadow-lg"
+                        className="h-6 md:h-10 w-auto object-contain drop-shadow-lg"
                     />
                 </Link>
 

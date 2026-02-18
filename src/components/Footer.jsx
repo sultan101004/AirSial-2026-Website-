@@ -24,32 +24,35 @@ const Footer = ({ onBookClick }) => {
             <div className="container mx-auto px-6 md:px-12 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-12 mb-16 border-b border-white/10 pb-12">
 
-                    {/* Column 1: Our Services */}
-                    <div className="space-y-6">
-                        <h4 className="text-accent text-sm font-bold uppercase tracking-widest mb-4">Our Services</h4>
-                        <ul className="space-y-3">
-                            {['Cargo', 'Flight Schedule', 'Tariff', 'Baggage', 'Lounges', 'Special Needs'].map((item) => (
-                                <li key={item}>
-                                    <Link to={`/services#${item.toLowerCase().replace(/\s+/g, '-')}`} className="text-gray-200 hover:text-white transition-colors block">
-                                        {item}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                    {/* Column 1: Services & About Us (Merged) */}
+                    <div className="col-span-1 md:col-span-2 grid grid-cols-2 gap-8">
+                        {/* Our Services */}
+                        <div className="space-y-6">
+                            <h4 className="text-accent text-sm font-bold uppercase tracking-widest mb-4">Our Services</h4>
+                            <ul className="space-y-3">
+                                {['Cargo', 'Flight Schedule', 'Tariff', 'Baggage', 'Lounges', 'Special Needs'].map((item) => (
+                                    <li key={item}>
+                                        <Link to={`/services#${item.toLowerCase().replace(/\s+/g, '-')}`} className="text-gray-200 hover:text-white transition-colors block">
+                                            {item}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
 
-                    {/* Column 2: About Us */}
-                    <div className="space-y-6">
-                        <h4 className="text-accent text-sm font-bold uppercase tracking-widest mb-4">About Us</h4>
-                        <ul className="space-y-3">
-                            {['Introduction', 'Vision & Mission', 'Our Fleet', 'Management', 'Our Team'].map((item) => (
-                                <li key={item}>
-                                    <Link to={`/about#${item.toLowerCase().replace(/\s+/g, '-')}`} className="text-gray-200 hover:text-white transition-colors block">
-                                        {item}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
+                        {/* About Us */}
+                        <div className="space-y-6">
+                            <h4 className="text-accent text-sm font-bold uppercase tracking-widest mb-4">About Us</h4>
+                            <ul className="space-y-3">
+                                {['Introduction', 'Vision & Mission', 'Our Fleet', 'Management', 'Our Team'].map((item) => (
+                                    <li key={item}>
+                                        <Link to={`/about#${item.toLowerCase().replace(/\s+/g, '-')}`} className="text-gray-200 hover:text-white transition-colors block">
+                                            {item}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
 
                     {/* Column 3: Customer Service */}
