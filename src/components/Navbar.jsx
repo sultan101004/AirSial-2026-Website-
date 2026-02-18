@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { ASSETS } from '../constants';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { useLiteMode } from '../context/LiteModeContext';
+import ThemeToggle from './ThemeToggle';
 
 const Navbar = ({ onBookClick }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -115,13 +116,9 @@ const Navbar = ({ onBookClick }) => {
                     ))}
 
                     {/* Desktop Theme Toggle */}
-                    <button
-                        onClick={toggleTheme}
-                        className={`p-2 border border-white/20 ${isLiteMode ? 'bg-black/50' : 'backdrop-blur-md bg-white/5'} rounded-full text-white hover:bg-white/10 transition-colors ml-4`}
-                        title={theme === 'dark' ? "Switch into Green Mode" : "Switch to Dark Mode"}
-                    >
-                        {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-                    </button>
+                    <div className="pointer-events-auto">
+                        <ThemeToggle />
+                    </div>
 
                     <button
                         onClick={onBookClick}
@@ -132,12 +129,9 @@ const Navbar = ({ onBookClick }) => {
                 </div>
 
                 {/* Mobile Theme Toggle (Right) */}
-                <button
-                    onClick={toggleTheme}
-                    className="lg:hidden text-white p-1 pointer-events-auto"
-                >
-                    {theme === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
-                </button>
+                <div className="lg:hidden pointer-events-auto">
+                    <ThemeToggle />
+                </div>
             </div>
 
             {/* Mobile Menu Overlay */}
