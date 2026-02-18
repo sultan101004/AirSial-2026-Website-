@@ -10,7 +10,7 @@ const Footer = ({ onBookClick }) => {
         <footer className="bg-primary pt-24 pb-12 relative overflow-hidden text-sm transition-colors duration-500">
 
             {/* Background Globe Effect */}
-            <div className="absolute inset-0 z-0 opacity-40 pointer-events-none flex items-center justify-center bg-black">
+            <div className="absolute inset-0 z-0 opacity-80 pointer-events-none flex items-center justify-center bg-black">
                 <motion.img
                     src={ASSETS.footerBackground}
                     alt="World Connectivity"
