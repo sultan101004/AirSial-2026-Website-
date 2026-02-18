@@ -13,9 +13,7 @@ export const LiteModeProvider = ({ children }) => {
         const lite = params.get('lite') === 'true';
         setIsLiteMode(lite);
 
-        if (lite) {
-            console.log("🚀 AirSial Lite Mode Activated: Performance Optimizations Enabled");
-        }
+
     }, []);
 
     return (
