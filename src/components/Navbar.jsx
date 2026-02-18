@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ASSETS } from '../constants';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { useLiteMode } from '../context/LiteModeContext';
@@ -8,15 +8,24 @@ import ThemeToggle from './ThemeToggle';
 
 const Navbar = ({ onBookClick }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [activeDropdown, setActiveDropdown] = useState(null);
+    const [activeDropdown, setActiveDropdown] = useState(null); // Desktop hover state
+    const [activeMobileDropdown, setActiveMobileDropdown] = useState(null); // Mobile click state
     const navigate = useNavigate();
-    const { theme, toggleTheme } = useTheme();
+    const { theme } = useTheme();
     const { isLiteMode } = useLiteMode();
 
     const handleLogoClick = () => {
         navigate('/');
         window.scrollTo(0, 0);
     }
+
+    const toggleMobileDropdown = (name) => {
+        if (activeMobileDropdown === name) {
+            setActiveMobileDropdown(null);
+        } else {
+            setActiveMobileDropdown(name);
+        }
+    };
 
     const navLinks = [
         {
@@ -137,35 +146,48 @@ const Navbar = ({ onBookClick }) => {
             {/* Mobile Menu Overlay */}
             {isMobileMenuOpen && (
                 <div className={`lg:hidden fixed inset-0 z-40 ${isLiteMode ? 'bg-black' : 'bg-black/95 backdrop-blur-xl'} pt-24 px-6 flex flex-col gap-4 overflow-y-auto animate-in fade-in slide-in-from-top-5 pointer-events-auto`}>
-                    {/* Extra Close Button for better UX */}
-                    <button
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="absolute top-6 right-6 text-white/50 hover:text-white"
-                    >
-                        <X size={32} />
-                    </button>
+                    {/* Note: Redundant X button removed as per user request */}
+
                     {navLinks.map((link) => (
-                        <div key={link.name}>
-                            <Link
-                                to={link.path}
-                                className="text-white text-xl font-serif hover:text-accent transition-colors block"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                                {link.name}
-                            </Link>
-                            {link.dropdown && (
-                                <div className="pl-4 mt-2 border-l border-white/10 space-y-2">
-                                    {link.dropdown.map((item) => (
-                                        <Link
-                                            key={item.label}
-                                            to={item.path}
-                                            className="block text-gray-200 text-sm hover:text-white transition-colors"
-                                            onClick={() => setIsMobileMenuOpen(false)}
-                                        >
-                                            {item.label}
-                                        </Link>
-                                    ))}
+                        <div key={link.name} className="border-b border-white/10 pb-2">
+                            {link.dropdown ? (
+                                <div>
+                                    <button
+                                        onClick={() => toggleMobileDropdown(link.name)}
+                                        className="w-full flex justify-between items-center text-white text-xl font-serif hover:text-accent transition-colors py-2"
+                                    >
+                                        <span>{link.name}</span>
+                                        {activeMobileDropdown === link.name ? (
+                                            <ChevronUp size={20} className="text-accent" />
+                                        ) : (
+                                            <ChevronDown size={20} className="text-white/50" />
+                                        )}
+                                    </button>
+
+                                    {/* Collapsible Content */}
+                                    <div className={`overflow-hidden transition-all duration-300 ${activeMobileDropdown === link.name ? 'max-h-96 opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
+                                        <div className="pl-4 space-y-3 pb-2 border-l border-white/10 ml-2">
+                                            {link.dropdown.map((item) => (
+                                                <Link
+                                                    key={item.label}
+                                                    to={item.path}
+                                                    className="block text-gray-300 text-sm hover:text-white transition-colors"
+                                                    onClick={() => setIsMobileMenuOpen(false)}
+                                                >
+                                                    {item.label}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
                                 </div>
+                            ) : (
+                                <Link
+                                    to={link.path}
+                                    className="text-white text-xl font-serif hover:text-accent transition-colors block py-2"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                    {link.name}
+                                </Link>
                             )}
                         </div>
                     ))}
