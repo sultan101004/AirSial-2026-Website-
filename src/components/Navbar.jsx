@@ -68,13 +68,21 @@ const Navbar = ({ onBookClick }) => {
     return (
         <nav className="absolute top-0 left-0 w-full px-6 py-5 md:p-8 z-[100] pointer-events-none">
             <div className="flex justify-between items-center relative w-full pt-4 md:pt-0">
-                {/* Mobile Menu Button (Left) */}
-                <button
-                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    className="lg:hidden text-white p-1 hover:text-accent transition-colors z-[100] pointer-events-auto"
-                >
-                    {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-                </button>
+                {/* Mobile Icons (Right) */}
+                <div className="xl:hidden flex items-center gap-3 ml-auto z-[100] pointer-events-auto">
+                    <button
+                        onClick={onBookClick}
+                        className="px-4 py-1.5 text-[10px] uppercase font-bold tracking-widest bg-[#C0985A]/20 border border-[#C0985A]/50 text-[#C0985A] rounded-full backdrop-blur-md flex items-center justify-center"
+                    >
+                        Book Now
+                    </button>
+                    <button
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        className="text-white p-1 hover:text-accent transition-colors"
+                    >
+                        {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+                    </button>
+                </div>
 
                 {/* Desktop Logo */}
                 <Link
@@ -90,17 +98,17 @@ const Navbar = ({ onBookClick }) => {
                 </Link>
 
                 {/* Desktop Menu */}
-                <div className="hidden lg:flex items-center gap-6 ml-auto pointer-events-auto">
+                <div className="hidden xl:flex items-center gap-3 xl:gap-6 ml-auto pointer-events-auto">
                     {navLinks.map((link) => (
                         <div
                             key={link.name}
-                            className="relative group"
+                            className="relative group shrink-0"
                             onMouseEnter={() => setActiveDropdown(link.name)}
                             onMouseLeave={() => setActiveDropdown(null)}
                         >
                             <Link
                                 to={link.path}
-                                className="text-white hover:text-accent transition-colors text-xs xl:text-xs uppercase tracking-widest font-medium py-2 block"
+                                className="text-white hover:text-accent transition-colors text-xs xl:text-xs uppercase tracking-widest font-medium py-2 block whitespace-nowrap"
                             >
                                 {link.name}
                             </Link>
@@ -132,31 +140,28 @@ const Navbar = ({ onBookClick }) => {
                     {/* Live Status Pill */}
                     <Link
                         to="/flight-status"
-                        className="flex items-center gap-2 px-4 py-1.5 rounded-full backdrop-blur-xl bg-[#111518]/60 border border-white/10 shadow-lg hover:bg-[#111518]/80 transition-colors group cursor-pointer"
+                        className="flex shrink-0 items-center gap-2 px-4 py-1.5 rounded-full backdrop-blur-xl bg-[#111518]/60 border border-white/10 shadow-lg hover:bg-[#111518]/80 transition-colors group cursor-pointer mb-0"
                     >
-                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                        <span className="text-[11px] text-white/80 group-hover:text-white tracking-widest uppercase font-medium transition-colors">
+                        <div className="shrink-0 w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                        <span className="text-[11px] text-white/80 group-hover:text-white tracking-widest uppercase font-medium transition-colors whitespace-nowrap">
                             PF-121 to LHE • On Time
                         </span>
                     </Link>
 
                     <button
                         onClick={onBookClick}
-                        className={`px-6 py-2 border border-white/20 ${isLiteMode ? 'bg-black/50' : 'backdrop-blur-md bg-white/5'} rounded-full text-xs xl:text-xs hover:bg-white/10 transition-colors uppercase tracking-wider ml-2`}
+                        className={`shrink-0 whitespace-nowrap px-6 py-2 border border-white/20 ${isLiteMode ? 'bg-black/50' : 'backdrop-blur-md bg-white/5'} rounded-full text-xs xl:text-xs hover:bg-white/10 transition-colors uppercase tracking-wider ml-2`}
                     >
                         Book Flight
                     </button>
                 </div>
 
-                {/* Mobile Theme Toggle (Right) */}
-                <div className="lg:hidden pointer-events-auto">
-                    <ThemeToggle />
-                </div>
+                {/* Removed Mobile Theme Toggle from Header */}
             </div>
 
             {/* Mobile Menu Overlay */}
             {isMobileMenuOpen && (
-                <div className={`lg:hidden fixed inset-0 z-40 ${isLiteMode ? 'bg-black' : 'bg-black/95 backdrop-blur-xl'} pt-24 px-6 flex flex-col gap-4 overflow-y-auto animate-in fade-in slide-in-from-top-5 pointer-events-auto`}>
+                <div className={`xl:hidden fixed inset-0 z-40 ${isLiteMode ? 'bg-black' : 'bg-black/95 backdrop-blur-xl'} pt-24 px-6 flex flex-col gap-4 overflow-y-auto animate-in fade-in slide-in-from-top-5 pointer-events-auto`}>
                     {/* Note: Redundant X button removed as per user request */}
 
                     {navLinks.map((link) => (
@@ -202,15 +207,33 @@ const Navbar = ({ onBookClick }) => {
                             )}
                         </div>
                     ))}
+
+                    {/* Mobile Live Status Pill */}
+                    <Link
+                        to="/flight-status"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="mt-4 flex items-center justify-center gap-3 px-4 py-3 rounded-full backdrop-blur-xl bg-[#111518]/60 border border-white/10 shadow-lg active:bg-[#111518]/80 transition-colors w-full"
+                    >
+                        <div className="shrink-0 w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></div>
+                        <span className="text-xs text-white/90 tracking-widest uppercase font-medium whitespace-nowrap">
+                            PF-121 to LHE • On Time
+                        </span>
+                    </Link>
+
                     <button
                         onClick={() => {
                             onBookClick();
                             setIsMobileMenuOpen(false);
                         }}
-                        className="w-full py-4 bg-accent text-black font-bold text-lg rounded-full mt-4 mb-8"
+                        className="w-full py-4 bg-accent text-black font-bold text-lg rounded-full mt-4 mb-4"
                     >
                         Book Flight
                     </button>
+
+                    {/* Moved Mobile Theme Toggle */}
+                    <div className="flex justify-center mt-2 mb-8">
+                        <ThemeToggle />
+                    </div>
                 </div>
             )}
         </nav>
