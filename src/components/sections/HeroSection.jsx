@@ -95,9 +95,9 @@ const HeroSection = () => {
                 {/* Hero Text (Initial) */}
                 <motion.div
                     style={{ opacity: textOpacity, y: textY }}
-                    className="absolute bottom-40 left-0 w-full px-6 text-center z-20 md:bottom-20 md:left-20 md:text-left md:w-auto md:px-0 will-change-transform"
+                    className="absolute bottom-20 left-0 w-full px-6 text-center z-20 md:bottom-20 md:left-20 md:text-left md:w-auto md:px-0 will-change-transform"
                 >
-                    <TextReveal className="text-5xl md:text-6xl text-white font-serif drop-shadow-2xl leading-none md:leading-tight gap-x-2 md:gap-x-4 justify-center md:justify-start">
+                    <TextReveal className="text-4xl md:text-6xl text-white font-serif drop-shadow-2xl leading-none md:leading-tight gap-x-2 md:gap-x-4 justify-center md:justify-start">
                         The Pride of Pakistan
                     </TextReveal>
                     <motion.p
