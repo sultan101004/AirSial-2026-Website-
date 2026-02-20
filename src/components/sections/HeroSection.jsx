@@ -90,17 +90,7 @@ const HeroSection = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 </motion.div>
 
-                {/* Mobile Logo (Top-Center) - Kept as requested previously */}
-                <motion.div
-                    style={{ opacity: textOpacity }}
-                    className="absolute top-5 left-1/2 -translate-x-1/2 z-50 md:hidden"
-                >
-                    <img
-                        src={ASSETS.brandLogo}
-                        alt="AirSial"
-                        className="h-12 w-auto object-contain drop-shadow-md"
-                    />
-                </motion.div>
+                {/* Mobile Logo removed as Navbar now handles mobile logo */}
 
                 {/* Hero Text (Initial) */}
                 <motion.div
