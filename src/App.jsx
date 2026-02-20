@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion'; // Keep AnimatePresence for Preloader
 import { BrowserRouter as Router, Routes, Route, Outlet, useLocation, useOutletContext } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import FlightTicker from './components/FlightTicker';
 import BookingModal from './components/BookingModal';
 import Preloader from './components/Preloader';
 import Cursor from './components/Cursor';
@@ -38,7 +37,6 @@ const Home = ({ onBookClick }) => {
     const { setIsMobileMenuOpen } = useOutletContext();
     return (
         <>
-            <FlightTicker />
             <HeroSection onBookClick={onBookClick} onMenuClick={() => setIsMobileMenuOpen(true)} />
             <ExperienceSection />
             <DestinationsSection />

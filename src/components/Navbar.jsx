@@ -129,6 +129,17 @@ const Navbar = ({ onBookClick }) => {
                         <ThemeToggle />
                     </div>
 
+                    {/* Live Status Pill */}
+                    <Link
+                        to="/flight-status"
+                        className="flex items-center gap-2 px-4 py-1.5 rounded-full backdrop-blur-xl bg-[#111518]/60 border border-white/10 shadow-lg hover:bg-[#111518]/80 transition-colors group cursor-pointer"
+                    >
+                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                        <span className="text-[11px] text-white/80 group-hover:text-white tracking-widest uppercase font-medium transition-colors">
+                            PF-121 to LHE • On Time
+                        </span>
+                    </Link>
+
                     <button
                         onClick={onBookClick}
                         className={`px-6 py-2 border border-white/20 ${isLiteMode ? 'bg-black/50' : 'backdrop-blur-md bg-white/5'} rounded-full text-xs xl:text-xs hover:bg-white/10 transition-colors uppercase tracking-wider ml-2`}
