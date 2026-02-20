@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { AnimatePresence } from 'framer-motion'; // Keep AnimatePresence for Preloader
 import { BrowserRouter as Router, Routes, Route, Outlet, useLocation, useOutletContext } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -15,18 +15,18 @@ import HeroSection from './components/sections/HeroSection';
 import ExperienceSection from './components/sections/ExperienceSection';
 import DestinationsSection from './components/sections/DestinationsSection';
 
-// Pages
-import About from './pages/About';
-import Contact from './pages/Contact';
-import Careers from './pages/Careers';
-import Destinations from './pages/Destinations';
-import Privacy from './pages/Privacy';
-import FlightStatus from './pages/FlightStatus';
-import ManageBooking from './pages/ManageBooking';
-import Loyalty from './pages/Loyalty';
-import Services from './pages/Services';
-import Feedback from './pages/Feedback';
-import AgencyEnrollment from './pages/AgencyEnrollment';
+// Pages (Lazy Loaded for Performance)
+const About = React.lazy(() => import('./pages/About'));
+const Contact = React.lazy(() => import('./pages/Contact'));
+const Careers = React.lazy(() => import('./pages/Careers'));
+const Destinations = React.lazy(() => import('./pages/Destinations'));
+const Privacy = React.lazy(() => import('./pages/Privacy'));
+const FlightStatus = React.lazy(() => import('./pages/FlightStatus'));
+const ManageBooking = React.lazy(() => import('./pages/ManageBooking'));
+const Loyalty = React.lazy(() => import('./pages/Loyalty'));
+const Services = React.lazy(() => import('./pages/Services'));
+const Feedback = React.lazy(() => import('./pages/Feedback'));
+const AgencyEnrollment = React.lazy(() => import('./pages/AgencyEnrollment'));
 
 // Context
 import { LiteModeProvider, useLiteMode } from './context/LiteModeContext';
@@ -120,24 +120,30 @@ function AppContent() {
                     </AnimatePresence>
 
                     {!loading && (
-                        <Routes>
-                            <Route path="/" element={<Layout onBookClick={() => setIsBookingModalOpen(true)} />}>
-                                <Route index element={<Home onBookClick={() => setIsBookingModalOpen(true)} />} />
-                                <Route path="about" element={<About />} />
-                                <Route path="contact" element={<Contact />} />
-                                <Route path="careers" element={<Careers />} />
-                                <Route path="destinations" element={<Destinations />} />
-                                <Route path="flight-status" element={<FlightStatus />} />
-                                <Route path="manage-booking" element={<ManageBooking />} />
-                                <Route path="loyalty" element={<Loyalty />} />
-                                <Route path="privacy" element={<Privacy />} />
-                                <Route path="terms" element={<Privacy />} />
-                                <Route path="services" element={<Services />} />
-                                <Route path="feedback" element={<Feedback />} />
-                                <Route path="agency-enrollment" element={<AgencyEnrollment />} />
-                                <Route path="*" element={<Home onBookClick={() => setIsBookingModalOpen(true)} />} />
-                            </Route>
-                        </Routes>
+                        <Suspense fallback={
+                            <div className="min-h-screen flex items-center justify-center bg-black">
+                                <div className="w-8 h-8 rounded-full border-t-2 border-r-2 border-accent animate-spin"></div>
+                            </div>
+                        }>
+                            <Routes>
+                                <Route path="/" element={<Layout onBookClick={() => setIsBookingModalOpen(true)} />}>
+                                    <Route index element={<Home onBookClick={() => setIsBookingModalOpen(true)} />} />
+                                    <Route path="about" element={<About />} />
+                                    <Route path="contact" element={<Contact />} />
+                                    <Route path="careers" element={<Careers />} />
+                                    <Route path="destinations" element={<Destinations />} />
+                                    <Route path="flight-status" element={<FlightStatus />} />
+                                    <Route path="manage-booking" element={<ManageBooking />} />
+                                    <Route path="loyalty" element={<Loyalty />} />
+                                    <Route path="privacy" element={<Privacy />} />
+                                    <Route path="terms" element={<Privacy />} />
+                                    <Route path="services" element={<Services />} />
+                                    <Route path="feedback" element={<Feedback />} />
+                                    <Route path="agency-enrollment" element={<AgencyEnrollment />} />
+                                    <Route path="*" element={<Home onBookClick={() => setIsBookingModalOpen(true)} />} />
+                                </Route>
+                            </Routes>
+                        </Suspense>
                     )}
 
                     <BookingModal

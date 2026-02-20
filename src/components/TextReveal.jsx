@@ -43,7 +43,7 @@ const TextReveal = ({ children, className }) => {
             className={`flex flex-wrap overflow-hidden ${className}`}
         >
             {words.map((word, index) => (
-                <motion.span variants={child} key={index} className="pb-1 relative">
+                <motion.span variants={child} key={index} className="pb-1 relative" style={{ willChange: "transform, opacity" }}>
                     {word}
                 </motion.span>
             ))}

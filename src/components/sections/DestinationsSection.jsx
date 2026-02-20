@@ -87,7 +87,7 @@ const DestinationsSection = () => {
                                     boxShadow: isActive ? '0 25px 50px -12px rgba(0, 0, 0, 0.7)' : 'none'
                                 }}
                             >
-                                <img src={dest.img} alt={dest.code} className="w-full h-full object-cover pointer-events-none" />
+                                <img src={dest.img} alt={dest.code} className="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async" />
                                 <div className={`absolute inset-0 bg-black/20 transition-opacity duration-300 ${isActive ? 'opacity-0' : 'opacity-60'}`} />
 
                                 {/* Content Overlay - Only visible on active card */}
