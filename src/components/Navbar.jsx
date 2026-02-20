@@ -4,7 +4,6 @@ import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { useLiteMode } from '../context/LiteModeContext';
-import { useLiteMode } from '../context/LiteModeContext';
 
 const Navbar = ({ onBookClick }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
