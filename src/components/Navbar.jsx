@@ -67,11 +67,11 @@ const Navbar = ({ onBookClick }) => {
 
     return (
         <nav className="absolute top-0 left-0 w-full px-6 py-5 md:p-8 z-[100] pointer-events-none">
-            <div className="flex items-center relative w-full pt-4 md:pt-0">
+            <div className="flex w-full items-center justify-between relative pt-4 md:pt-0">
                 {/* Left: Logo */}
                 <div className="flex-1 flex justify-start z-50 pointer-events-auto">
                     <Link to="/" onClick={() => window.scrollTo(0, 0)} className="block">
-                        <img src={ASSETS.brandLogo} alt="AirSial" className="h-6 md:h-10 w-auto object-contain drop-shadow-lg" />
+                        <img src={ASSETS.brandLogo} alt="AirSial" className="h-6 sm:h-8 md:h-10 w-auto object-contain drop-shadow-lg" />
                     </Link>
                 </div>
 
@@ -102,10 +102,10 @@ const Navbar = ({ onBookClick }) => {
                 <div className="flex-1 flex gap-4 items-center justify-end z-[100] pointer-events-auto">
                     {/* Mobile Actions */}
                     <div className="xl:hidden flex items-center gap-3">
-                        <button onClick={onBookClick} className="px-4 py-1.5 text-[10px] uppercase font-bold tracking-widest bg-[#C0985A]/20 border border-[#C0985A]/50 text-[#C0985A] rounded-full backdrop-blur-md flex items-center justify-center">
+                        <button onClick={onBookClick} className="px-4 py-1.5 text-[10px] uppercase font-bold tracking-widest bg-[#C0985A]/20 border border-[#C0985A]/50 text-[#C0985A] rounded-full backdrop-blur-md flex items-center justify-center whitespace-nowrap">
                             Book Now
                         </button>
-                        <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-white p-1 hover:text-accent transition-colors">
+                        <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-white p-1 hover:text-accent transition-colors shrink-0">
                             {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
                         </button>
                     </div>
