@@ -4,7 +4,7 @@ import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { useLiteMode } from '../context/LiteModeContext';
-import ThemeToggle from './ThemeToggle';
+import { useLiteMode } from '../context/LiteModeContext';
 
 const Navbar = ({ onBookClick }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -67,62 +67,27 @@ const Navbar = ({ onBookClick }) => {
 
     return (
         <nav className="absolute top-0 left-0 w-full px-6 py-5 md:p-8 z-[100] pointer-events-none">
-            <div className="flex justify-between items-center relative w-full pt-4 md:pt-0">
-                {/* Mobile Icons (Right) */}
-                <div className="xl:hidden flex items-center gap-3 ml-auto z-[100] pointer-events-auto">
-                    <button
-                        onClick={onBookClick}
-                        className="px-4 py-1.5 text-[10px] uppercase font-bold tracking-widest bg-[#C0985A]/20 border border-[#C0985A]/50 text-[#C0985A] rounded-full backdrop-blur-md flex items-center justify-center"
-                    >
-                        Book Now
-                    </button>
-                    <button
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        className="text-white p-1 hover:text-accent transition-colors"
-                    >
-                        {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-                    </button>
+            <div className="flex items-center relative w-full pt-4 md:pt-0">
+                {/* Left: Logo */}
+                <div className="flex-1 flex justify-start z-50 pointer-events-auto">
+                    <Link to="/" onClick={() => window.scrollTo(0, 0)} className="block">
+                        <img src={ASSETS.brandLogo} alt="AirSial" className="h-6 md:h-10 w-auto object-contain drop-shadow-lg" />
+                    </Link>
                 </div>
 
-                {/* Desktop Logo */}
-                <Link
-                    to="/"
-                    onClick={() => window.scrollTo(0, 0)}
-                    className="hidden md:block relative z-50 pointer-events-auto"
-                >
-                    <img
-                        src={ASSETS.brandLogo}
-                        alt="AirSial"
-                        className="h-6 md:h-10 w-auto object-contain drop-shadow-lg"
-                    />
-                </Link>
-
-                {/* Desktop Menu */}
-                <div className="hidden xl:flex items-center gap-3 xl:gap-6 ml-auto pointer-events-auto">
+                {/* Center: Navigation Links */}
+                <div className="hidden xl:flex flex-1 justify-center gap-3 xl:gap-6 pointer-events-auto">
                     {navLinks.map((link) => (
-                        <div
-                            key={link.name}
-                            className="relative group shrink-0"
-                            onMouseEnter={() => setActiveDropdown(link.name)}
-                            onMouseLeave={() => setActiveDropdown(null)}
-                        >
-                            <Link
-                                to={link.path}
-                                className="text-white hover:text-accent transition-colors text-xs xl:text-xs uppercase tracking-widest font-medium py-2 block whitespace-nowrap"
-                            >
+                        <div key={link.name} className="relative group shrink-0" onMouseEnter={() => setActiveDropdown(link.name)} onMouseLeave={() => setActiveDropdown(null)}>
+                            <Link to={link.path} className="text-white hover:text-accent transition-colors text-xs xl:text-xs uppercase tracking-widest font-medium py-2 block whitespace-nowrap">
                                 {link.name}
                             </Link>
 
-                            {/* Dropdown */}
                             {link.dropdown && (
                                 <div className="absolute top-full left-0 pt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
                                     <div className={`${isLiteMode ? 'bg-black/95' : 'bg-black/90 backdrop-blur-md'} border border-white/10 rounded-lg p-2 shadow-xl`}>
                                         {link.dropdown.map((item) => (
-                                            <Link
-                                                key={item.label}
-                                                to={item.path}
-                                                className="block px-4 py-2 text-gray-100 hover:text-white hover:bg-white/10 rounded text-xs uppercase tracking-wider transition-colors"
-                                            >
+                                            <Link key={item.label} to={item.path} className="block px-4 py-2 text-gray-100 hover:text-white hover:bg-white/10 rounded text-xs uppercase tracking-wider transition-colors">
                                                 {item.label}
                                             </Link>
                                         ))}
@@ -131,32 +96,34 @@ const Navbar = ({ onBookClick }) => {
                             )}
                         </div>
                     ))}
-
-                    {/* Desktop Theme Toggle */}
-                    <div className="pointer-events-auto">
-                        <ThemeToggle />
-                    </div>
-
-                    {/* Live Status Pill */}
-                    <Link
-                        to="/flight-status"
-                        className="flex shrink-0 items-center gap-2 px-4 py-1.5 rounded-full backdrop-blur-xl bg-[#111518]/60 border border-white/10 shadow-lg hover:bg-[#111518]/80 transition-colors group cursor-pointer mb-0"
-                    >
-                        <div className="shrink-0 w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                        <span className="text-[11px] text-white/80 group-hover:text-white tracking-widest uppercase font-medium transition-colors whitespace-nowrap">
-                            PF-121 to LHE • On Time
-                        </span>
-                    </Link>
-
-                    <button
-                        onClick={onBookClick}
-                        className={`shrink-0 whitespace-nowrap px-6 py-2 border border-white/20 ${isLiteMode ? 'bg-black/50' : 'backdrop-blur-md bg-white/5'} rounded-full text-xs xl:text-xs hover:bg-white/10 transition-colors uppercase tracking-wider ml-2`}
-                    >
-                        Book Flight
-                    </button>
                 </div>
 
-                {/* Removed Mobile Theme Toggle from Header */}
+                {/* Right: Actions Container */}
+                <div className="flex-1 flex gap-4 items-center justify-end z-[100] pointer-events-auto">
+                    {/* Mobile Actions */}
+                    <div className="xl:hidden flex items-center gap-3">
+                        <button onClick={onBookClick} className="px-4 py-1.5 text-[10px] uppercase font-bold tracking-widest bg-[#C0985A]/20 border border-[#C0985A]/50 text-[#C0985A] rounded-full backdrop-blur-md flex items-center justify-center">
+                            Book Now
+                        </button>
+                        <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-white p-1 hover:text-accent transition-colors">
+                            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+                        </button>
+                    </div>
+
+                    {/* Desktop Actions */}
+                    <div className="hidden xl:flex items-center gap-4">
+                        {/* Live Status Pill */}
+                        <Link to="/flight-status" className="flex shrink-0 items-center gap-2 px-4 py-1.5 backdrop-blur-md bg-white/10 border border-white/20 text-white text-[11px] uppercase tracking-widest font-bold rounded-full hover:bg-white/20 transition-all cursor-pointer">
+                            <div className="shrink-0 w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                            <span className="whitespace-nowrap">PF-121 to LHE • On Time</span>
+                        </Link>
+
+                        {/* Book Flight */}
+                        <button onClick={onBookClick} className="shrink-0 whitespace-nowrap px-6 py-2 backdrop-blur-md bg-white/10 border border-white/20 text-white text-[11px] uppercase tracking-widest font-bold rounded-full hover:bg-white/20 transition-all">
+                            Book Flight
+                        </button>
+                    </div>
+                </div>
             </div>
 
             {/* Mobile Menu Overlay */}
@@ -230,10 +197,6 @@ const Navbar = ({ onBookClick }) => {
                         Book Flight
                     </button>
 
-                    {/* Moved Mobile Theme Toggle */}
-                    <div className="flex justify-center mt-2 mb-8">
-                        <ThemeToggle />
-                    </div>
                 </div>
             )}
         </nav>

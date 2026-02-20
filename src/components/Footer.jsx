@@ -4,6 +4,7 @@ import { Facebook, Instagram, Linkedin, Twitter, Phone, Mail, MapPin } from 'luc
 import { ASSETS } from '../constants';
 import MagneticButton from './MagneticButton';
 import { Link } from 'react-router-dom';
+import ThemeToggle from './ThemeToggle';
 
 const Footer = ({ onBookClick }) => {
     return (
@@ -119,6 +120,10 @@ const Footer = ({ onBookClick }) => {
                             <a href="#" className="hover:text-white transition-colors"><Twitter size={16} /></a>
                             <a href="#" className="hover:text-white transition-colors"><Instagram size={16} /></a>
                             <a href="#" className="hover:text-white transition-colors"><Linkedin size={16} /></a>
+                        </div>
+                        {/* Theme Toggle */}
+                        <div className="flex items-center md:ml-4 text-white/50 hover:text-white transition-colors">
+                            <ThemeToggle />
                         </div>
                     </div>
                 </div>
