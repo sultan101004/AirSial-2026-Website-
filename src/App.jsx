@@ -2,7 +2,7 @@ import React, { useState, useEffect, Suspense } from 'react';
 import { AnimatePresence, motion } from 'framer-motion'; // Keep AnimatePresence for Preloader
 import { BrowserRouter as Router, Routes, Route, useLocation, Outlet, useOutletContext } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import BookingModal from './components/BookingModal';
+const BookingModal = React.lazy(() => import('./components/BookingModal'));
 import Preloader from './components/Preloader';
 import Cursor from './components/Cursor';
 import Footer from './components/Footer';
@@ -120,9 +120,9 @@ function AppContent() {
                     {/* Main Content (Mounted immediately for LCP) */}
                     <motion.div
                         key="main-content"
-                        initial={{ opacity: 0 }}
+                        initial={{ opacity: 1 }} // Mount with full opacity behind preloader
                         animate={{ opacity: 1 }}
-                        transition={{ duration: 1, ease: "easeOut" }}
+                        transition={{ duration: 0.5, ease: "easeOut" }} // Faster reveal if any
                     >
                         <Suspense fallback={
                             <div className="min-h-screen flex items-center justify-center bg-black">
@@ -150,10 +150,12 @@ function AppContent() {
                         </Suspense>
                     </motion.div>
 
-                    <BookingModal
-                        isOpen={isBookingModalOpen}
-                        onClose={() => setIsBookingModalOpen(false)}
-                    />
+                    <Suspense fallback={null}>
+                        <BookingModal
+                            isOpen={isBookingModalOpen}
+                            onClose={() => setIsBookingModalOpen(false)}
+                        />
+                    </Suspense>
 
                     {/* Agency Branding Badge */}
                     <div className="fixed bottom-6 left-6 z-[100] flex items-center gap-2 px-3 py-1.5 backdrop-blur-md bg-white/10 border border-white/20 rounded-full shadow-lg hover:bg-white/20 transition-all group cursor-pointer">

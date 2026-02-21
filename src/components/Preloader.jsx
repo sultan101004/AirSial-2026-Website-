@@ -10,13 +10,13 @@ const Preloader = ({ onComplete }) => {
             setTextIndex(prev => {
                 if (prev === words.length - 1) {
                     clearInterval(interval);
-                    setTextIndex(words.length - 1); // Stay on final word
-                    setTimeout(onComplete, 300); // Fast handover
+                    setTextIndex(words.length - 1);
+                    setTimeout(onComplete, 200); // Near-instant handover
                     return prev;
                 }
                 return prev + 1;
             });
-        }, 300); // Fast sequence
+        }, 250); // Blistering fast sequence (1s total)
 
         return () => clearInterval(interval);
     }, [onComplete, words.length]);
@@ -24,7 +24,7 @@ const Preloader = ({ onComplete }) => {
     return (
         <motion.div
             initial={{ y: 0 }}
-            exit={{ y: "-100%", transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] } }}
+            exit={{ y: "-100%", transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] } }} // Sharper exit
             className="fixed inset-0 z-[9999] bg-black flex items-center justify-center overflow-hidden"
         >
             <div className="flex flex-col items-center">

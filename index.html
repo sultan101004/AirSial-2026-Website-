@@ -59,19 +59,45 @@
       flex-direction: column;
     }
 
-    .bg-primary {
-      background-color: #000000;
+    /* Initial Static Preloader (vanilla CSS for instant FCP) */
+    .initial-preloader {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
     }
 
-    .text-accent {
-      color: #C0985A;
+    .preloader-text {
+      color: white;
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5em;
+      opacity: 0;
+      animation: fadeInOut 1.5s ease-in-out infinite;
+      font-family: 'Playfair Display', serif;
+    }
+
+    @keyframes fadeInOut {
+
+      0%,
+      100% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .font-serif {
       font-family: 'Playfair Display', serif;
     }
 
-    /* Ensure no white flicker during hydration */
     html,
     body,
     #root {
@@ -85,7 +111,12 @@
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <!-- Static Preloader for instant FCP -->
+    <div class="initial-preloader" id="static-preloader">
+      <div class="preloader-text">AirSial</div>
+    </div>
+  </div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 
