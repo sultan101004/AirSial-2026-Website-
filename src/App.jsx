@@ -10,10 +10,9 @@ import AmbientBackground from './components/AmbientBackground';
 import Lenis from 'lenis';
 import { ThemeProvider } from './context/ThemeContext';
 
-// Sections
-import HeroSection from './components/sections/HeroSection';
-import ExperienceSection from './components/sections/ExperienceSection';
-import DestinationsSection from './components/sections/DestinationsSection';
+// Sections (Lazy Loaded for performance)
+const ExperienceSection = React.lazy(() => import('./components/sections/ExperienceSection'));
+const DestinationsSection = React.lazy(() => import('./components/sections/DestinationsSection'));
 
 // Pages (Lazy Loaded for Performance)
 const About = React.lazy(() => import('./pages/About'));
@@ -40,8 +39,12 @@ const Home = React.memo(({ onBookClick }) => {
     return (
         <>
             <HeroSection onBookClick={onBookClick} onMenuClick={handleMenuClick} />
-            <ExperienceSection />
-            <DestinationsSection />
+            <Suspense fallback={<div className="h-[50vh] bg-primary" />}>
+                <ExperienceSection />
+            </Suspense>
+            <Suspense fallback={<div className="h-[50vh] bg-primary" />}>
+                <DestinationsSection />
+            </Suspense>
         </>
     );
 });

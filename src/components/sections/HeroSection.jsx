@@ -23,17 +23,17 @@ const HeroSection = React.memo(() => {
     const smoothProgress = isMobile ? scrollYProgress : springProgress;
 
     // 1. Exterior Animation (Zoom in & Fade out)
-    const scale = useTransform(smoothProgress, [0, 0.45], [1, 2.8]); // Slightly reduced scale for sharpness
+    const scale = useTransform(smoothProgress, [0, 0.45], [1, isMobile ? 1.8 : 2.8]);
     const opacity = useTransform(smoothProgress, [0.35, 0.5], [1, 0]);
 
     // 2. Interior Animation (Slow Zoom & Text Reveal)
-    const scaleInterior = useTransform(smoothProgress, [0, 1], [1, 1.15]); // More subtle
-    const interiorTextOpacity = useTransform(smoothProgress, [0.45, 0.65], [0, 1]); // Appear earlier
-    const interiorTextY = useTransform(smoothProgress, [0.45, 0.65], [30, 0]);
+    const scaleInterior = useTransform(smoothProgress, [0, 1], [1, isMobile ? 1.05 : 1.15]);
+    const interiorTextOpacity = useTransform(smoothProgress, [0.45, 0.65], [0, 1]);
+    const interiorTextY = useTransform(smoothProgress, [0.45, 0.65], [isMobile ? 15 : 30, 0]);
 
     // 3. Initial Hero Text (Fades out quickly)
     const textOpacity = useTransform(smoothProgress, [0, 0.2], [1, 0]);
-    const textY = useTransform(smoothProgress, [0, 0.2], [0, -50]); // Add upward movement for premium feel
+    const textY = useTransform(smoothProgress, [0, 0.2], [0, isMobile ? -20 : -50]);
 
     return (
         <div ref={containerRef} className="h-[200vh] md:h-[250vh] relative bg-primary transition-colors duration-500"> {/* Use standard vh for the scroll path to avoid dynamic shift */}
