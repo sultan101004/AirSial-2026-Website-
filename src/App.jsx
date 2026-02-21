@@ -109,43 +109,46 @@ function AppContent() {
                 <AmbientBackground />
                 <div className="relative z-10 bg-transparent min-h-[100svh] text-white font-sans selection:bg-accent selection:text-black">
                     <Cursor />
-                    <AnimatePresence mode='wait'>
-                        {loading ? (
+
+                    {/* Preloader Overlay */}
+                    <AnimatePresence>
+                        {loading && (
                             <Preloader key="preloader" onComplete={() => setLoading(false)} />
-                        ) : (
-                            <motion.div
-                                key="main-content"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ duration: 1, ease: "easeOut" }}
-                            >
-                                <Suspense fallback={
-                                    <div className="min-h-screen flex items-center justify-center bg-black">
-                                        <div className="w-8 h-8 rounded-full border-t-2 border-r-2 border-accent animate-spin"></div>
-                                    </div>
-                                }>
-                                    <Routes>
-                                        <Route path="/" element={<Layout onBookClick={openBooking} />}>
-                                            <Route index element={<Home onBookClick={openBooking} />} />
-                                            <Route path="about" element={<About />} />
-                                            <Route path="contact" element={<Contact />} />
-                                            <Route path="careers" element={<Careers />} />
-                                            <Route path="destinations" element={<Destinations />} />
-                                            <Route path="flight-status" element={<FlightStatus />} />
-                                            <Route path="manage-booking" element={<ManageBooking />} />
-                                            <Route path="loyalty" element={<Loyalty />} />
-                                            <Route path="privacy" element={<Privacy />} />
-                                            <Route path="terms" element={<Privacy />} />
-                                            <Route path="services" element={<Services />} />
-                                            <Route path="feedback" element={<Feedback />} />
-                                            <Route path="agency-enrollment" element={<AgencyEnrollment />} />
-                                            <Route path="*" element={<Home onBookClick={openBooking} />} />
-                                        </Route>
-                                    </Routes>
-                                </Suspense>
-                            </motion.div>
                         )}
                     </AnimatePresence>
+
+                    {/* Main Content (Mounted immediately for LCP) */}
+                    <motion.div
+                        key="main-content"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1, ease: "easeOut" }}
+                    >
+                        <Suspense fallback={
+                            <div className="min-h-screen flex items-center justify-center bg-black">
+                                <div className="w-8 h-8 rounded-full border-t-2 border-r-2 border-accent animate-spin"></div>
+                            </div>
+                        }>
+                            <Routes>
+                                <Route path="/" element={<Layout onBookClick={openBooking} />}>
+                                    <Route index element={<Home onBookClick={openBooking} />} />
+                                    <Route path="about" element={<About />} />
+                                    <Route path="contact" element={<Contact />} />
+                                    <Route path="careers" element={<Careers />} />
+                                    <Route path="destinations" element={<Destinations />} />
+                                    <Route path="flight-status" element={<FlightStatus />} />
+                                    <Route path="manage-booking" element={<ManageBooking />} />
+                                    <Route path="loyalty" element={<Loyalty />} />
+                                    <Route path="privacy" element={<Privacy />} />
+                                    <Route path="terms" element={<Privacy />} />
+                                    <Route path="services" element={<Services />} />
+                                    <Route path="feedback" element={<Feedback />} />
+                                    <Route path="agency-enrollment" element={<AgencyEnrollment />} />
+                                    <Route path="*" element={<Home onBookClick={openBooking} />} />
+                                </Route>
+                            </Routes>
+                        </Suspense>
+                    </motion.div>
 
                     <BookingModal
                         isOpen={isBookingModalOpen}

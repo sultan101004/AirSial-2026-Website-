@@ -10,12 +10,13 @@ const Preloader = ({ onComplete }) => {
             setTextIndex(prev => {
                 if (prev === words.length - 1) {
                     clearInterval(interval);
-                    setTimeout(onComplete, 500); // Snappier handover
+                    setTextIndex(words.length - 1); // Stay on final word
+                    setTimeout(onComplete, 300); // Fast handover
                     return prev;
                 }
                 return prev + 1;
             });
-        }, 400); // Slightly faster sequence
+        }, 300); // Fast sequence
 
         return () => clearInterval(interval);
     }, [onComplete, words.length]);
@@ -24,7 +25,7 @@ const Preloader = ({ onComplete }) => {
         <motion.div
             initial={{ y: 0 }}
             exit={{ y: "-100%", transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] } }}
-            className="fixed inset-0 z-[100] bg-black flex items-center justify-center overflow-hidden"
+            className="fixed inset-0 z-[9999] bg-black flex items-center justify-center overflow-hidden"
         >
             <div className="flex flex-col items-center">
                 <div className="h-24 flex items-center justify-center overflow-hidden">
