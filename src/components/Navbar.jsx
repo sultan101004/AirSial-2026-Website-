@@ -56,8 +56,16 @@ const Navbar = ({ onBookClick }) => {
     ];
 
     return (
-        <nav className="absolute top-0 left-0 w-full px-6 py-5 md:p-8 z-[100] pointer-events-none">
-            <div className="flex w-full items-center justify-between relative pt-4 md:pt-0">
+        <nav className="absolute top-0 left-0 w-full px-6 py-4 md:p-6 z-[100] pointer-events-none">
+            {/* Top: Live Status Pill (Desktop Only) */}
+            <div className="hidden xl:flex justify-center mb-4 pointer-events-auto">
+                <Link to="/flight-status" className="flex items-center gap-2 px-4 py-1.5 backdrop-blur-md bg-white/10 border border-white/20 text-white text-[11px] uppercase tracking-widest font-bold rounded-full hover:bg-white/20 transition-all cursor-pointer shadow-lg hover:border-accent/40">
+                    <div className="shrink-0 w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                    <span className="whitespace-nowrap">PF-121 to LHE • On Time</span>
+                </Link>
+            </div>
+
+            <div className="flex w-full items-center justify-between relative">
                 {/* Left: Logo */}
                 <div className="flex-1 flex justify-start z-50 pointer-events-auto">
                     <Link to="/" onClick={() => window.scrollTo(0, 0)} className="block">
@@ -102,12 +110,6 @@ const Navbar = ({ onBookClick }) => {
 
                     {/* Desktop Actions */}
                     <div className="hidden xl:flex items-center gap-4">
-                        {/* Live Status Pill */}
-                        <Link to="/flight-status" className="flex shrink-0 items-center gap-2 px-4 py-1.5 backdrop-blur-md bg-white/10 border border-white/20 text-white text-[11px] uppercase tracking-widest font-bold rounded-full hover:bg-white/20 transition-all cursor-pointer">
-                            <div className="shrink-0 w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                            <span className="whitespace-nowrap">PF-121 to LHE • On Time</span>
-                        </Link>
-
                         {/* Book Flight */}
                         <button onClick={onBookClick} className="shrink-0 whitespace-nowrap px-6 py-2 backdrop-blur-md bg-white/10 border border-white/20 text-white text-[11px] uppercase tracking-widest font-bold rounded-full hover:bg-white/20 transition-all">
                             Book Flight
