@@ -8,7 +8,11 @@ const ThemeToggle = () => {
     const { isLiteMode } = useLiteMode();
 
     return (
-        <div className={`relative flex items-center p-0.5 rounded-full border border-white/20 ml-2 md:ml-4 ${isLiteMode ? 'bg-black/10' : 'bg-white/5 backdrop-blur-md'}`}>
+        <div
+            className={`relative flex items-center p-0.5 rounded-full border border-white/20 ml-2 md:ml-4 ${isLiteMode ? 'bg-black/10' : 'bg-white/5 backdrop-blur-md'}`}
+            role="region"
+            aria-label="Theme selection"
+        >
             {/* Sliding "Liquid" Background */}
             <motion.div
                 layout

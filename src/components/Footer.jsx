@@ -12,7 +12,8 @@ const Footer = () => {
             <div className="absolute inset-0 z-0 opacity-80 pointer-events-none flex items-center justify-center bg-black">
                 <motion.img
                     src={ASSETS.footerBackground}
-                    alt="World Connectivity"
+                    alt=""
+                    aria-hidden="true"
                     className="w-[180%] h-[180%] md:w-4/5 md:h-4/5 object-contain opacity-100 mix-blend-screen"
                     animate={{ rotate: 360 }}
                     transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
@@ -91,7 +92,7 @@ const Footer = () => {
 
                         <div className="pt-6">
                             <h4 className="text-accent text-sm font-bold uppercase tracking-widest mb-4">Secure Payment</h4>
-                            <div className="flex gap-4 text-gray-400 grayscale opacity-70">
+                            <div className="flex gap-4 text-gray-400 grayscale opacity-70" aria-hidden="true">
                                 {/* Placeholders for Payment Logos */}
                                 <div className="h-8 w-12 bg-white/10 rounded flex items-center justify-center text-[10px]">VISA</div>
                                 <div className="h-8 w-12 bg-white/10 rounded flex items-center justify-center text-[10px]">MC</div>

@@ -60,8 +60,19 @@ const Navbar = ({ onBookClick, isMobileMenuOpen, setIsMobileMenuOpen }) => {
             <div className="flex w-full items-center justify-between relative">
                 {/* Left: Logo */}
                 <div className="flex-1 flex justify-start z-[101] pointer-events-auto">
-                    <Link to="/" onClick={() => { setIsMobileMenuOpen(false); window.scrollTo(0, 0); }} className="block">
-                        <img src={ASSETS.brandLogo} alt="AirSial" className="h-16 sm:h-24 md:h-32 w-auto object-contain drop-shadow-lg" />
+                    <Link
+                        to="/"
+                        onClick={() => { setIsMobileMenuOpen(false); window.scrollTo(0, 0); }}
+                        className="block"
+                        aria-label="AirSial Home"
+                    >
+                        <img
+                            src={ASSETS.brandLogo}
+                            alt="AirSial"
+                            width="128"
+                            height="128"
+                            className="h-16 sm:h-24 md:h-32 w-auto object-contain drop-shadow-lg"
+                        />
                     </Link>
                 </div>
 
@@ -92,7 +103,11 @@ const Navbar = ({ onBookClick, isMobileMenuOpen, setIsMobileMenuOpen }) => {
                 <div className="flex-1 flex justify-end items-center gap-4 z-[100] pointer-events-auto">
                     {/* Mobile Actions */}
                     <div className="xl:hidden flex items-center gap-3 z-[101]">
-                        <button onClick={onBookClick} className="px-4 py-1.5 text-[10px] uppercase font-bold tracking-widest bg-[#C0985A]/20 border border-[#C0985A]/50 text-[#C0985A] rounded-full backdrop-blur-md flex items-center justify-center whitespace-nowrap shadow-lg">
+                        <button
+                            onClick={onBookClick}
+                            className="px-4 py-1.5 text-[10px] uppercase font-bold tracking-widest bg-[#C0985A]/20 border border-[#C0985A]/50 text-[#C0985A] rounded-full backdrop-blur-md flex items-center justify-center whitespace-nowrap shadow-lg"
+                            aria-label="Book a flight"
+                        >
                             Book Now
                         </button>
                         <button
@@ -107,7 +122,11 @@ const Navbar = ({ onBookClick, isMobileMenuOpen, setIsMobileMenuOpen }) => {
                     {/* Desktop Actions */}
                     <div className="hidden xl:flex items-center gap-4">
                         {/* Book Flight */}
-                        <button onClick={onBookClick} className="shrink-0 whitespace-nowrap px-6 py-2 backdrop-blur-md bg-white/10 border border-white/20 text-white text-[11px] uppercase tracking-widest font-bold rounded-full hover:bg-white/20 transition-all">
+                        <button
+                            onClick={onBookClick}
+                            className="shrink-0 whitespace-nowrap px-6 py-2 backdrop-blur-md bg-white/10 border border-white/20 text-white text-[11px] uppercase tracking-widest font-bold rounded-full hover:bg-white/20 transition-all"
+                            aria-label="Book a flight"
+                        >
                             Book Flight
                         </button>
                     </div>
