@@ -3,21 +3,24 @@ import { useScroll, useSpring, useTransform, motion } from 'framer-motion';
 import { ASSETS } from '../../constants';
 import TextReveal from '../TextReveal';
 
-const HeroSection = () => {
+const HeroSection = React.memo(({ onBookClick, onMenuClick }) => {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     const containerRef = useRef(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end start"]
     });
 
-    // Optimized Scroll Animation (Premium Feel)
-    // We use useSpring to smooth out the scroll input, creating a "weighted" feel
-    const smoothProgress = useSpring(scrollYProgress, {
-        mass: 0.1, // Reduced from 0.5 for less "weight"
-        stiffness: 200, // Increased from 100 for faster snap-to-position
-        damping: 25, // Adjusted damping for crispness
+    // We use useSpring to smooth out the scroll input on desktop
+    // On mobile, we bypass this to avoid perceived "sloppy" lag
+    const springProgress = useSpring(scrollYProgress, {
+        mass: 0.1,
+        stiffness: 200,
+        damping: 25,
         restDelta: 0.001
     });
+
+    const smoothProgress = isMobile ? scrollYProgress : springProgress;
 
     // 1. Exterior Animation (Zoom in & Fade out)
     const scale = useTransform(smoothProgress, [0, 0.45], [1, 2.8]); // Slightly reduced scale for sharpness
@@ -112,6 +115,7 @@ const HeroSection = () => {
             </div>
         </div>
     );
-};
+});
 
+HeroSection.displayName = 'HeroSection';
 export default HeroSection;

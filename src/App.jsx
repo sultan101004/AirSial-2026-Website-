@@ -33,18 +33,21 @@ import { LiteModeProvider, useLiteMode } from './context/LiteModeContext';
 
 // --- Routing Components ---
 
-const Home = ({ onBookClick }) => {
+const Home = React.memo(({ onBookClick }) => {
     const { setIsMobileMenuOpen } = useOutletContext();
+    const handleMenuClick = React.useCallback(() => setIsMobileMenuOpen(true), [setIsMobileMenuOpen]);
+
     return (
         <>
-            <HeroSection onBookClick={onBookClick} onMenuClick={() => setIsMobileMenuOpen(true)} />
+            <HeroSection onBookClick={onBookClick} onMenuClick={handleMenuClick} />
             <ExperienceSection />
             <DestinationsSection />
         </>
     );
-};
+});
+Home.displayName = 'Home';
 
-const Layout = ({ onBookClick }) => {
+const Layout = React.memo(({ onBookClick }) => {
     const { pathname } = useLocation();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -66,7 +69,8 @@ const Layout = ({ onBookClick }) => {
             <Footer onBookClick={onBookClick} />
         </div>
     );
-};
+});
+Layout.displayName = 'Layout';
 
 function AppContent() {
     const [loading, setLoading] = useState(true);
@@ -93,7 +97,7 @@ function AppContent() {
         document.body.style.overflow = loading ? "hidden" : "unset";
     }, [loading]);
 
-    const openBooking = () => setIsBookingModalOpen(true);
+    const openBooking = React.useCallback(() => setIsBookingModalOpen(true), []);
 
     return (
         <ThemeProvider>
