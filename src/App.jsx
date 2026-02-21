@@ -71,43 +71,28 @@ const Layout = ({ onBookClick }) => {
 function AppContent() {
     const [loading, setLoading] = useState(true);
     const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-    const { isLiteMode } = useLiteMode(); // Get Lite Mode state
+    const { isLiteMode } = useLiteMode();
 
     useEffect(() => {
-        // Disable Lenis in Lite Mode
         if (isLiteMode) return;
-
         const lenis = new Lenis({
             duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
-            direction: 'vertical',
-            gestureDirection: 'vertical',
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             smooth: true,
-            mouseMultiplier: 1,
-            smoothTouch: false,
-            touchMultiplier: 2,
         })
-
         function raf(time) {
             lenis.raf(time)
             requestAnimationFrame(raf)
         }
-
         requestAnimationFrame(raf)
-
-        return () => {
-            lenis.destroy()
-        }
-    }, [isLiteMode]); // Re-run if mode changes
+        return () => lenis.destroy()
+    }, [isLiteMode]);
 
     useEffect(() => {
-        // Prevent scroll when loading
-        if (loading) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "unset";
-        }
+        document.body.style.overflow = loading ? "hidden" : "unset";
     }, [loading]);
+
+    const openBooking = () => setIsBookingModalOpen(true);
 
     return (
         <ThemeProvider>
@@ -126,8 +111,8 @@ function AppContent() {
                             </div>
                         }>
                             <Routes>
-                                <Route path="/" element={<Layout onBookClick={() => setIsBookingModalOpen(true)} />}>
-                                    <Route index element={<Home onBookClick={() => setIsBookingModalOpen(true)} />} />
+                                <Route path="/" element={<Layout onBookClick={openBooking} />}>
+                                    <Route index element={<Home onBookClick={openBooking} />} />
                                     <Route path="about" element={<About />} />
                                     <Route path="contact" element={<Contact />} />
                                     <Route path="careers" element={<Careers />} />
@@ -140,7 +125,7 @@ function AppContent() {
                                     <Route path="services" element={<Services />} />
                                     <Route path="feedback" element={<Feedback />} />
                                     <Route path="agency-enrollment" element={<AgencyEnrollment />} />
-                                    <Route path="*" element={<Home onBookClick={() => setIsBookingModalOpen(true)} />} />
+                                    <Route path="*" element={<Home onBookClick={openBooking} />} />
                                 </Route>
                             </Routes>
                         </Suspense>
