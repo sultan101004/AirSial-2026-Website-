@@ -153,11 +153,27 @@ function AppContent() {
 
                     {/* Agency Branding Badge */}
                     <div className="fixed bottom-6 left-6 z-[100] flex items-center gap-2 px-3 py-1.5 backdrop-blur-md bg-white/10 border border-white/20 rounded-full shadow-lg hover:bg-white/20 transition-all group cursor-pointer">
-                        <img
-                            src="/assets/myk-logo.svg"
-                            alt="MYK Studio Logo"
-                            className="w-4 h-4 object-contain shrink-0"
-                        />
+                        <svg className="w-4 h-4 shrink-0 drop-shadow-md" viewBox="20 20 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="mykGradient1" x1="20" y1="80" x2="50" y2="20" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stopColor="#AF67E9" />
+                                    <stop offset="100%" stopColor="#4A3482" />
+                                </linearGradient>
+                                <linearGradient id="mykGradient2" x1="50" y1="80" x2="80" y2="20" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stopColor="#4A3482" />
+                                    <stop offset="100%" stopColor="#A464DF" />
+                                </linearGradient>
+                                <filter id="shadow" x="0" y="0" width="120" height="120" filterUnits="userSpaceOnUse">
+                                    <feDropShadow dx="-2" dy="2" stdDeviation="1" floodOpacity="0.3" />
+                                </filter>
+                            </defs>
+
+                            {/* Left M Pillar */}
+                            <path d="M25 75 C25 79 31 79 31 75 L31 45 C32 45 40 55 41 57 C42 59 44 59 45 57 L55 45 L55 75 C55 79 61 79 61 75 L61 30 C61 27 57 25 55 28 C55 28 44 42 43 43 C42 44 40 42 40 42 L29 28 C26 25 25 27 25 30 Z" fill="url(#mykGradient1)" />
+
+                            {/* Right K Shape */}
+                            <path d="M53 75 C53 79 59 79 59 75 L59 58 C65 65 73 75 75 77 C77 80 81 78 79 75 L67 55 L79 35 C81 32 77 30 75 33 L62 48 L59 45 L59 30 C59 26 53 26 53 30 Z" fill="url(#mykGradient2)" filter="url(#shadow)" />
+                        </svg>
                         <span className="text-white/90 text-[8px] md:text-[9px] leading-none tracking-[0.15em] uppercase font-bold group-hover:text-white transition-colors whitespace-nowrap">
                             Prototype by MYK STUDIO
                         </span>
