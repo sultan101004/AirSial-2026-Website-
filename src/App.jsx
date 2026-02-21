@@ -154,7 +154,7 @@ function AppContent() {
                     {/* Agency Branding Badge */}
                     <div className="fixed bottom-6 left-6 z-[100] flex items-center gap-2 px-3 py-1.5 backdrop-blur-md bg-white/10 border border-white/20 rounded-full shadow-lg hover:bg-white/20 transition-all group cursor-pointer">
                         <img
-                            src="/assets/myk-logo.png"
+                            src="/assets/myk-logo.webp"
                             alt="MYK Studio Logo"
                             className="w-4 h-4 object-contain shrink-0"
                         />
