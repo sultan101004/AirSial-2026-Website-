@@ -76,9 +76,10 @@ function AppContent() {
     useEffect(() => {
         if (isLiteMode) return;
         const lenis = new Lenis({
-            duration: 1.2,
+            duration: 1.0, // Reduced from 1.2 for faster response
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             smooth: true,
+            touchMultiplier: 1.5, // Added to make touch feel more direct
         })
         function raf(time) {
             lenis.raf(time)

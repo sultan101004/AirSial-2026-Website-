@@ -6,11 +6,20 @@ import { motion } from 'framer-motion';
 const AmbientBackground = () => {
     const { theme } = useTheme();
     const { isLiteMode } = useLiteMode();
+    const [isMobile, setIsMobile] = React.useState(false);
+
+    React.useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     return (
         <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden bg-primary transition-colors duration-500">
             {/* Background Effects */}
-            {isLiteMode ? (
-                /* Lite Mode: Static subtle gradient (Premium & Minimalist) */
+            {(isLiteMode || isMobile) ? (
+                /* Mobile/Lite Mode: Static subtle gradient (Ultra-Performance) */
                 <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 via-transparent to-blue-900/5" />
             ) : (
                 /* High-End Mode: Animated Orbs */
@@ -44,9 +53,9 @@ const AmbientBackground = () => {
                 </>
             )}
 
-            {/* Floating Particles (Stardust) - Reduced Count */}
+            {/* Floating Particles (Stardust) - Reduced Count on mobile */}
             <div className="absolute inset-0 opacity-20">
-                {[...Array(isLiteMode ? 5 : 20)].map((_, i) => ( // Reduced from 20 to 8, now dynamic
+                {[...Array((isLiteMode || isMobile) ? 4 : 20)].map((_, i) => ( // Minimal particles for mobile
                     <motion.div
                         key={i}
                         initial={{

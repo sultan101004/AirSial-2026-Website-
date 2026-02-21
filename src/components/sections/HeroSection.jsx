@@ -13,9 +13,9 @@ const HeroSection = () => {
     // Optimized Scroll Animation (Premium Feel)
     // We use useSpring to smooth out the scroll input, creating a "weighted" feel
     const smoothProgress = useSpring(scrollYProgress, {
-        mass: 0.5,
-        stiffness: 100,
-        damping: 30,
+        mass: 0.1, // Reduced from 0.5 for less "weight"
+        stiffness: 200, // Increased from 100 for faster snap-to-position
+        damping: 25, // Adjusted damping for crispness
         restDelta: 0.001
     });
 
