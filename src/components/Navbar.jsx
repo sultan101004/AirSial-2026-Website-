@@ -56,14 +56,7 @@ const Navbar = ({ onBookClick }) => {
     ];
 
     return (
-        <nav className="absolute top-0 left-0 w-full px-6 py-4 md:p-6 z-[100] pointer-events-none">
-            {/* Top: Live Status Pill (Desktop Only) */}
-            <div className="hidden xl:flex justify-center mb-4 pointer-events-auto">
-                <Link to="/flight-status" className="flex items-center gap-2 px-4 py-1.5 backdrop-blur-md bg-white/10 border border-white/20 text-white text-[11px] uppercase tracking-widest font-bold rounded-full hover:bg-white/20 transition-all cursor-pointer shadow-lg hover:border-accent/40">
-                    <div className="shrink-0 w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                    <span className="whitespace-nowrap">PF-121 to LHE • On Time</span>
-                </Link>
-            </div>
+        <nav className="absolute top-0 left-0 w-full px-6 py-2 md:py-4 md:px-12 z-[100] pointer-events-none">
 
             <div className="flex w-full items-center justify-between relative">
                 {/* Left: Logo */}
@@ -167,17 +160,6 @@ const Navbar = ({ onBookClick }) => {
                         </div>
                     ))}
 
-                    {/* Mobile Live Status Pill */}
-                    <Link
-                        to="/flight-status"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="mt-4 flex items-center justify-center gap-3 px-4 py-3 rounded-full backdrop-blur-xl bg-[#111518]/60 border border-white/10 shadow-lg active:bg-[#111518]/80 transition-colors w-full"
-                    >
-                        <div className="shrink-0 w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></div>
-                        <span className="text-xs text-white/90 tracking-widest uppercase font-medium whitespace-nowrap">
-                            PF-121 to LHE • On Time
-                        </span>
-                    </Link>
 
                     <button
                         onClick={() => {
