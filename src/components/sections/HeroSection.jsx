@@ -39,7 +39,7 @@ const HeroSection = () => {
                 {/* Layer 1: Interior (Revealed after zoom) */}
                 <motion.div
                     style={{ scale: scaleInterior }}
-                    className="absolute inset-0 z-0 bg-primary flex items-center justify-center will-change-transform transition-none"
+                    className="absolute inset-0 z-0 bg-primary flex items-center justify-center will-change-transform transition-none transform-gpu"
                 >
                     {/* Desktop Image */}
                     <img
@@ -72,7 +72,7 @@ const HeroSection = () => {
                 </motion.div>
 
                 {/* Layer 2: Exterior (Front - Zooms & Fades) */}
-                <motion.div style={{ opacity, scale }} className="absolute inset-0 z-10 origin-center bg-black flex items-center justify-center will-change-transform transition-none">
+                <motion.div style={{ opacity, scale }} className="absolute inset-0 z-10 origin-center bg-black flex items-center justify-center will-change-transform transition-none transform-gpu">
                     {/* Desktop Image */}
                     <img
                         src={ASSETS.heroExterior}

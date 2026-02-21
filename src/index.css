@@ -60,6 +60,7 @@ h6 {
 }
 
 /* Ensure links and buttons always show pointer */
-a, button {
+a,
+button {
   cursor: pointer;
 }
