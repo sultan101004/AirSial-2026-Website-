@@ -114,10 +114,10 @@ const Footer = () => {
                             <span>info@airsial.com</span>
                         </div>
                         <div className="flex gap-4 md:ml-4 mt-2 md:mt-0">
-                            <a href="#" className="hover:text-white transition-colors"><Facebook size={16} /></a>
-                            <a href="#" className="hover:text-white transition-colors"><Twitter size={16} /></a>
-                            <a href="#" className="hover:text-white transition-colors"><Instagram size={16} /></a>
-                            <a href="#" className="hover:text-white transition-colors"><Linkedin size={16} /></a>
+                            <a href="#" className="hover:text-white transition-colors" aria-label="Follow AirSial on Facebook"><Facebook size={16} /></a>
+                            <a href="#" className="hover:text-white transition-colors" aria-label="Follow AirSial on Twitter"><Twitter size={16} /></a>
+                            <a href="#" className="hover:text-white transition-colors" aria-label="Follow AirSial on Instagram"><Instagram size={16} /></a>
+                            <a href="#" className="hover:text-white transition-colors" aria-label="Follow AirSial on LinkedIn"><Linkedin size={16} /></a>
                         </div>
                         {/* Theme Toggle */}
                         <div className="flex items-center md:ml-4 text-white/50 hover:text-white transition-colors">

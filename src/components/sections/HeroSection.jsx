@@ -83,12 +83,16 @@ const HeroSection = React.memo(() => {
                         className="hidden md:block w-full h-full object-cover"
                         loading="eager"
                         decoding="sync"
+                        fetchpriority="high"
                     />
                     {/* Mobile Image */}
                     <img
                         src={ASSETS.heroExteriorMobile}
                         alt="Plane Exterior"
                         className="block md:hidden w-full h-[110%] absolute top-[-5%] object-cover will-change-transform"
+                        loading="eager"
+                        decoding="sync"
+                        fetchpriority="high"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 </motion.div>

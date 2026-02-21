@@ -96,7 +96,11 @@ const Navbar = ({ onBookClick }) => {
                         <button onClick={onBookClick} className="px-4 py-1.5 text-[10px] uppercase font-bold tracking-widest bg-[#C0985A]/20 border border-[#C0985A]/50 text-[#C0985A] rounded-full backdrop-blur-md flex items-center justify-center whitespace-nowrap">
                             Book Now
                         </button>
-                        <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-white p-1 hover:text-accent transition-colors shrink-0">
+                        <button
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            className="text-white p-1 hover:text-accent transition-colors shrink-0"
+                            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+                        >
                             {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
                         </button>
                     </div>
