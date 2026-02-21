@@ -66,7 +66,7 @@ const Navbar = ({ onBookClick }) => {
                 </div>
 
                 {/* Center: Navigation Links */}
-                <div className="hidden xl:flex flex-1 justify-center gap-3 xl:gap-6 pointer-events-auto">
+                <div className="hidden xl:flex justify-center gap-3 xl:gap-10 pointer-events-auto">
                     {navLinks.map((link) => (
                         <div key={link.name} className="relative group shrink-0">
                             <Link to={link.path} className="text-white hover:text-accent transition-colors text-xs xl:text-xs uppercase tracking-widest font-medium py-2 block whitespace-nowrap">
@@ -89,7 +89,7 @@ const Navbar = ({ onBookClick }) => {
                 </div>
 
                 {/* Right: Actions Container */}
-                <div className="flex-1 flex gap-4 items-center justify-end z-[100] pointer-events-auto">
+                <div className="flex-1 flex justify-end items-center gap-4 z-[100] pointer-events-auto">
                     {/* Mobile Actions */}
                     <div className="xl:hidden flex items-center gap-3">
                         <button onClick={onBookClick} className="px-4 py-1.5 text-[10px] uppercase font-bold tracking-widest bg-[#C0985A]/20 border border-[#C0985A]/50 text-[#C0985A] rounded-full backdrop-blur-md flex items-center justify-center whitespace-nowrap">
