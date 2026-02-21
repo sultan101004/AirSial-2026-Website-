@@ -4,8 +4,7 @@ import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLiteMode } from '../context/LiteModeContext';
 
-const Navbar = ({ onBookClick }) => {
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const Navbar = ({ onBookClick, isMobileMenuOpen, setIsMobileMenuOpen }) => {
     const [activeMobileDropdown, setActiveMobileDropdown] = useState(null); // Mobile click state
     const { isLiteMode } = useLiteMode();
 
@@ -60,8 +59,8 @@ const Navbar = ({ onBookClick }) => {
 
             <div className="flex w-full items-center justify-between relative">
                 {/* Left: Logo */}
-                <div className="flex-1 flex justify-start z-50 pointer-events-auto">
-                    <Link to="/" onClick={() => window.scrollTo(0, 0)} className="block">
+                <div className="flex-1 flex justify-start z-[101] pointer-events-auto">
+                    <Link to="/" onClick={() => { setIsMobileMenuOpen(false); window.scrollTo(0, 0); }} className="block">
                         <img src={ASSETS.brandLogo} alt="AirSial" className="h-16 sm:h-24 md:h-32 w-auto object-contain drop-shadow-lg" />
                     </Link>
                 </div>
@@ -92,8 +91,8 @@ const Navbar = ({ onBookClick }) => {
                 {/* Right: Actions Container */}
                 <div className="flex-1 flex justify-end items-center gap-4 z-[100] pointer-events-auto">
                     {/* Mobile Actions */}
-                    <div className="xl:hidden flex items-center gap-3">
-                        <button onClick={onBookClick} className="px-4 py-1.5 text-[10px] uppercase font-bold tracking-widest bg-[#C0985A]/20 border border-[#C0985A]/50 text-[#C0985A] rounded-full backdrop-blur-md flex items-center justify-center whitespace-nowrap">
+                    <div className="xl:hidden flex items-center gap-3 z-[101]">
+                        <button onClick={onBookClick} className="px-4 py-1.5 text-[10px] uppercase font-bold tracking-widest bg-[#C0985A]/20 border border-[#C0985A]/50 text-[#C0985A] rounded-full backdrop-blur-md flex items-center justify-center whitespace-nowrap shadow-lg">
                             Book Now
                         </button>
                         <button
