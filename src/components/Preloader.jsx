@@ -10,12 +10,12 @@ const Preloader = ({ onComplete }) => {
             setTextIndex(prev => {
                 if (prev === words.length - 1) {
                     clearInterval(interval);
-                    setTimeout(onComplete, 800); // Faster handover to main content
+                    setTimeout(onComplete, 500); // Snappier handover
                     return prev;
                 }
                 return prev + 1;
             });
-        }, 500); // Slower for premium feel
+        }, 400); // Slightly faster sequence
 
         return () => clearInterval(interval);
     }, [onComplete, words.length]);

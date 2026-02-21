@@ -26,6 +26,47 @@
   <link rel="icon" type="image/webp" href="/assets/favicon.webp" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AirSial 2026 | The Pride of Pakistan</title>
+
+  <!-- Performance: Resource Hints -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Critical Inline CSS (Mobile First) -->
+  <style>
+    :root {
+      --bg-primary: #000000;
+      --accent: #C0985A;
+    }
+
+    body {
+      background: #000000;
+      margin: 0;
+      font-family: sans-serif;
+      overflow-x: hidden;
+    }
+
+    #root {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bg-primary {
+      background-color: #000000;
+    }
+
+    .text-accent {
+      color: #C0985A;
+    }
+
+    .font-serif {
+      font-family: 'Playfair Display', serif;
+    }
+  </style>
+
+  <!-- LCP Preloads (Mobile optimized) -->
+  <link rel="preload" as="image" href="/assets/heroExteriorMobile.webp" media="(max-width: 767px)" fetchpriority="high">
+  <link rel="preload" as="image" href="/assets/heroExterior.webp" media="(min-width: 768px)" fetchpriority="high">
 </head>
 
 <body>

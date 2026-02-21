@@ -48,15 +48,21 @@ const HeroSection = React.memo(() => {
                     <img
                         src={ASSETS.heroInterior}
                         alt="Cabin Interior"
+                        width="1920"
+                        height="1080"
                         className="hidden md:block w-full h-full object-cover opacity-60"
-                        loading="eager"
-                        decoding="sync"
+                        loading="lazy"
+                        decoding="async"
                     />
                     {/* Mobile Image */}
                     <img
                         src={ASSETS.heroInteriorMobile}
                         alt="Cabin Interior"
+                        width="430"
+                        height="932"
                         className="block md:hidden w-full h-[110%] absolute top-[-5%] object-cover opacity-80 will-change-transform"
+                        loading="lazy"
+                        decoding="async"
                     />
                     <div className="absolute inset-0 bg-black/40" />
 
@@ -80,15 +86,23 @@ const HeroSection = React.memo(() => {
                     <img
                         src={ASSETS.heroExterior}
                         alt="Plane Exterior"
+                        width="1920"
+                        height="1080"
                         className="hidden md:block w-full h-full object-cover"
                         loading="eager"
                         decoding="sync"
+                        fetchpriority="high"
                     />
                     {/* Mobile Image */}
                     <img
                         src={ASSETS.heroExteriorMobile}
                         alt="Plane Exterior"
+                        width="430"
+                        height="932"
                         className="block md:hidden w-full h-[110%] absolute top-[-5%] object-cover will-change-transform"
+                        loading="eager"
+                        decoding="sync"
+                        fetchpriority="high"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 </motion.div>
