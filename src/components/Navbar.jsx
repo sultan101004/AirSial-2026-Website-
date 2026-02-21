@@ -61,7 +61,7 @@ const Navbar = ({ onBookClick }) => {
                 {/* Left: Logo */}
                 <div className="flex-1 flex justify-start z-50 pointer-events-auto">
                     <Link to="/" onClick={() => window.scrollTo(0, 0)} className="block">
-                        <img src={ASSETS.brandLogo} alt="AirSial" className="h-10 sm:h-14 md:h-16 w-auto object-contain drop-shadow-lg" />
+                        <img src={ASSETS.brandLogo} alt="AirSial" className="h-16 sm:h-24 md:h-32 w-auto object-contain drop-shadow-lg" />
                     </Link>
                 </div>
 
