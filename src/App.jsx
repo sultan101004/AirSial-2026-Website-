@@ -152,12 +152,12 @@ function AppContent() {
                     />
 
                     {/* Agency Branding Badge */}
-                    <div className="fixed bottom-6 right-6 z-[100] flex items-center gap-3 pl-2 pr-5 py-2.5 backdrop-blur-xl bg-[#111518]/80 border border-white/10 rounded-full shadow-lg hover:bg-[#111518]/90 transition-all group">
-                        <img
-                            src="/assets/myk-logo.png"
-                            alt="MYK Studio Logo"
-                            className="w-6 h-6 object-contain"
-                        />
+                    <div className="fixed bottom-6 left-6 z-[100] flex items-center gap-3 pl-2 pr-5 py-2.5 backdrop-blur-xl bg-[#111518]/80 border border-white/10 rounded-full shadow-lg hover:bg-[#111518]/90 transition-all group">
+                        <div className="w-6 h-6 flex items-center justify-center rounded-full bg-gradient-to-br from-[#7e22ce] to-[#581c87] shadow-inner">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5 text-white">
+                                <path d="M4 19V5L12 13L20 5V19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        </div>
                         <span className="text-white/60 text-[10px] leading-none tracking-[0.2em] uppercase font-semibold group-hover:text-white/90 transition-colors">
                             Prototype by MYK STUDIO
                         </span>
