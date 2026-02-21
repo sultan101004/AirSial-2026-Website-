@@ -1,12 +1,10 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Facebook, Instagram, Linkedin, Twitter, Phone, Mail, MapPin } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Twitter, Phone, Mail } from 'lucide-react';
 import { ASSETS } from '../constants';
-import MagneticButton from './MagneticButton';
 import { Link } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
 
-const Footer = ({ onBookClick }) => {
+const Footer = () => {
     return (
         <footer className="bg-primary pt-24 pb-12 relative overflow-hidden text-sm transition-colors duration-500">
 

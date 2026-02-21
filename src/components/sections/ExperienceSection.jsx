@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { ASSETS } from '../../constants';
@@ -33,7 +32,7 @@ const ExperienceSection = () => {
                 <TextReveal className="text-4xl md:text-6xl text-accent mb-6 gap-x-3">
                     World Class Experience
                 </TextReveal>
-                <p className="text-gray-100 max-w-xl text-lg">Let's touch the SKY together. Experience the warmth of Pakistani hospitality.</p>
+                <p className="text-gray-100 max-w-xl text-lg">Let&apos;s touch the SKY together. Experience the warmth of Pakistani hospitality.</p>
 
                 {/* Mobile Swipe Hint */}
                 <div className="md:hidden flex items-center gap-2 mt-4 text-accent/80 text-sm animate-pulse">

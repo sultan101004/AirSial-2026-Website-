@@ -1,10 +1,8 @@
 import React from 'react';
-import { useTheme } from '../context/ThemeContext';
 import { useLiteMode } from '../context/LiteModeContext';
 import { motion } from 'framer-motion';
 
 const AmbientBackground = () => {
-    const { theme } = useTheme();
     const { isLiteMode } = useLiteMode();
     const [isMobile, setIsMobile] = React.useState(false);
 
@@ -14,6 +12,16 @@ const AmbientBackground = () => {
         window.addEventListener('resize', checkMobile);
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
+
+    const particles = React.useMemo(() => {
+        const count = (isLiteMode || isMobile) ? 4 : 20;
+        return [...Array(count)].map(() => ({
+            x: Math.random() * 100, // percentage for better responsiveness
+            y: Math.random() * 100,
+            duration: Math.random() * 10 + 15,
+            delay: Math.random() * 5
+        }));
+    }, [isLiteMode, isMobile]);
 
     return (
         <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden bg-primary transition-colors duration-500">
@@ -55,24 +63,24 @@ const AmbientBackground = () => {
 
             {/* Floating Particles (Stardust) - Reduced Count on mobile */}
             <div className="absolute inset-0 opacity-20">
-                {[...Array((isLiteMode || isMobile) ? 4 : 20)].map((_, i) => ( // Minimal particles for mobile
+                {particles.map((particle, i) => ( // Minimal particles for mobile
                     <motion.div
                         key={i}
                         initial={{
-                            x: Math.random() * window.innerWidth,
-                            y: Math.random() * window.innerHeight,
+                            left: `${particle.x}%`,
+                            top: `${particle.y}%`,
                         }}
                         animate={{
-                            y: [0, -50],
+                            y: [0, -100],
                             opacity: [0, 0.8, 0],
                         }}
                         transition={{
-                            duration: Math.random() * 10 + 15,
+                            duration: particle.duration,
                             repeat: Infinity,
                             ease: "linear",
-                            delay: Math.random() * 5
+                            delay: particle.delay
                         }}
-                        className={`absolute w-1 h-1 bg-white rounded-full will-change-transform ${isLiteMode ? '' : 'blur-xl'}`}
+                        className={`absolute w-1 h-1 bg-white rounded-full will-change-transform ${isLiteMode ? '' : 'blur-sm'}`} // Reduced blur for performance
                     />
                 ))}
             </div>

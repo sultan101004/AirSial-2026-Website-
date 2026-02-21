@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import TextReveal from '../components/TextReveal';
 import { ASSETS } from '../constants';

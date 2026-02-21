@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import TextReveal from '../components/TextReveal';
 import { Search, Plane, AlertTriangle, CheckCircle } from 'lucide-react';

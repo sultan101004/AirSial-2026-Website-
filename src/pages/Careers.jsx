@@ -1,7 +1,6 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import TextReveal from '../components/TextReveal';
-import { Briefcase, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const Careers = () => {
     const jobs = [

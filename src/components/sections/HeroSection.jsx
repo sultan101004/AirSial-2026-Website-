@@ -3,7 +3,7 @@ import { useScroll, useSpring, useTransform, motion } from 'framer-motion';
 import { ASSETS } from '../../constants';
 import TextReveal from '../TextReveal';
 
-const HeroSection = React.memo(({ onBookClick, onMenuClick }) => {
+const HeroSection = React.memo(() => {
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     const containerRef = useRef(null);
     const { scrollYProgress } = useScroll({

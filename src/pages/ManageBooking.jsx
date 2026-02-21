@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import TextReveal from '../components/TextReveal';
-import { Search, Loader, Utensils, Luggage, Armchair, CheckCircle } from 'lucide-react';
-import { ASSETS } from '../constants';
+import { Loader, Utensils, Luggage, Armchair, CheckCircle } from 'lucide-react';
 
 const ManageBooking = () => {
     const [pnr, setPnr] = useState('');

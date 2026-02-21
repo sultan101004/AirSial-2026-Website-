@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ASSETS } from '../constants';
 
 const Preloader = ({ onComplete }) => {
     const [textIndex, setTextIndex] = useState(0);

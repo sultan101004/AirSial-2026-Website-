@@ -1,22 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ASSETS } from '../constants';
 import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useTheme } from '../context/ThemeContext';
+import { Link } from 'react-router-dom';
 import { useLiteMode } from '../context/LiteModeContext';
 
 const Navbar = ({ onBookClick }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [activeDropdown, setActiveDropdown] = useState(null); // Desktop hover state
     const [activeMobileDropdown, setActiveMobileDropdown] = useState(null); // Mobile click state
-    const navigate = useNavigate();
-    const { theme } = useTheme();
     const { isLiteMode } = useLiteMode();
-
-    const handleLogoClick = () => {
-        navigate('/');
-        window.scrollTo(0, 0);
-    }
 
     const toggleMobileDropdown = (name) => {
         if (activeMobileDropdown === name) {
@@ -77,7 +68,7 @@ const Navbar = ({ onBookClick }) => {
                 {/* Center: Navigation Links */}
                 <div className="hidden xl:flex flex-1 justify-center gap-3 xl:gap-6 pointer-events-auto">
                     {navLinks.map((link) => (
-                        <div key={link.name} className="relative group shrink-0" onMouseEnter={() => setActiveDropdown(link.name)} onMouseLeave={() => setActiveDropdown(null)}>
+                        <div key={link.name} className="relative group shrink-0">
                             <Link to={link.path} className="text-white hover:text-accent transition-colors text-xs xl:text-xs uppercase tracking-widest font-medium py-2 block whitespace-nowrap">
                                 {link.name}
                             </Link>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { AnimatePresence } from 'framer-motion'; // Keep AnimatePresence for Preloader
-import { BrowserRouter as Router, Routes, Route, Outlet, useLocation, useOutletContext } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Outlet, useOutletContext } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import BookingModal from './components/BookingModal';
 import Preloader from './components/Preloader';

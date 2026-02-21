@@ -1,8 +1,6 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import TextReveal from '../components/TextReveal';
-import { Award, Crown, Zap, ArrowRight, UserPlus } from 'lucide-react';
-import { ASSETS } from '../constants';
+import { Award, Crown, Zap, UserPlus } from 'lucide-react';
 
 const Loyalty = () => {
     const tiers = [
