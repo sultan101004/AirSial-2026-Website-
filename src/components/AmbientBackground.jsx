@@ -26,11 +26,8 @@ const AmbientBackground = () => {
     return (
         <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden bg-primary transition-colors duration-500">
             {/* Background Effects */}
-            {isMobile ? (
-                /* Mobile: Solid Static Color (Maximum Performance for TBT) */
-                <div className="absolute inset-0 bg-primary" />
-            ) : isLiteMode ? (
-                /* Lite Mode: Static subtle gradient */
+            {(isLiteMode || isMobile) ? (
+                /* Mobile/Lite Mode: Static subtle gradient (Ultra-Performance) */
                 <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 via-transparent to-blue-900/5" />
             ) : (
                 /* High-End Mode: Animated Orbs */
@@ -64,36 +61,32 @@ const AmbientBackground = () => {
                 </>
             )}
 
-            {/* Floating Particles - Disabled on mobile for TBT optimization */}
-            {!isMobile && (
-                <div className="absolute inset-0 opacity-20">
-                    {particles.map((particle, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{
-                                left: `${particle.x}%`,
-                                top: `${particle.y}%`,
-                            }}
-                            animate={{
-                                y: [0, -100],
-                                opacity: [0, 0.8, 0],
-                            }}
-                            transition={{
-                                duration: particle.duration,
-                                repeat: Infinity,
-                                ease: "linear",
-                                delay: particle.delay
-                            }}
-                            className={`absolute w-1 h-1 bg-white rounded-full will-change-transform ${isLiteMode ? '' : 'blur-sm'}`}
-                        />
-                    ))}
-                </div>
-            )}
+            {/* Floating Particles (Stardust) - Reduced Count on mobile */}
+            <div className="absolute inset-0 opacity-20">
+                {particles.map((particle, i) => ( // Minimal particles for mobile
+                    <motion.div
+                        key={i}
+                        initial={{
+                            left: `${particle.x}%`,
+                            top: `${particle.y}%`,
+                        }}
+                        animate={{
+                            y: [0, -100],
+                            opacity: [0, 0.8, 0],
+                        }}
+                        transition={{
+                            duration: particle.duration,
+                            repeat: Infinity,
+                            ease: "linear",
+                            delay: particle.delay
+                        }}
+                        className={`absolute w-1 h-1 bg-white rounded-full will-change-transform ${isLiteMode ? '' : 'blur-sm'}`} // Reduced blur for performance
+                    />
+                ))}
+            </div>
 
-            {/* Noise Overlay - Disabled on mobile to reduce Main Thread work */}
-            {!isMobile && (
-                <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
-            )}
+            {/* Noise Overlay for Texture - Optimized opacity */}
+            <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
         </div>
     );
 };

@@ -23,17 +23,17 @@ const HeroSection = React.memo(() => {
     const smoothProgress = isMobile ? scrollYProgress : springProgress;
 
     // 1. Exterior Animation (Zoom in & Fade out)
-    const scale = useTransform(smoothProgress, [0, 0.45], [1, isMobile ? 1.8 : 2.8]);
+    const scale = useTransform(smoothProgress, [0, 0.45], [1, 2.8]); // Slightly reduced scale for sharpness
     const opacity = useTransform(smoothProgress, [0.35, 0.5], [1, 0]);
 
     // 2. Interior Animation (Slow Zoom & Text Reveal)
-    const scaleInterior = useTransform(smoothProgress, [0, 1], [1, isMobile ? 1.05 : 1.15]);
-    const interiorTextOpacity = useTransform(smoothProgress, [0.45, 0.65], [0, 1]);
-    const interiorTextY = useTransform(smoothProgress, [0.45, 0.65], [isMobile ? 15 : 30, 0]);
+    const scaleInterior = useTransform(smoothProgress, [0, 1], [1, 1.15]); // More subtle
+    const interiorTextOpacity = useTransform(smoothProgress, [0.45, 0.65], [0, 1]); // Appear earlier
+    const interiorTextY = useTransform(smoothProgress, [0.45, 0.65], [30, 0]);
 
     // 3. Initial Hero Text (Fades out quickly)
     const textOpacity = useTransform(smoothProgress, [0, 0.2], [1, 0]);
-    const textY = useTransform(smoothProgress, [0, 0.2], [0, isMobile ? -20 : -50]);
+    const textY = useTransform(smoothProgress, [0, 0.2], [0, -50]); // Add upward movement for premium feel
 
     return (
         <div ref={containerRef} className="h-[200vh] md:h-[250vh] relative bg-primary transition-colors duration-500"> {/* Use standard vh for the scroll path to avoid dynamic shift */}
@@ -48,21 +48,15 @@ const HeroSection = React.memo(() => {
                     <img
                         src={ASSETS.heroInterior}
                         alt="Cabin Interior"
-                        width="1920"
-                        height="1080"
                         className="hidden md:block w-full h-full object-cover opacity-60"
-                        loading="lazy"
-                        decoding="async"
+                        loading="eager"
+                        decoding="sync"
                     />
                     {/* Mobile Image */}
                     <img
                         src={ASSETS.heroInteriorMobile}
                         alt="Cabin Interior"
-                        width="430"
-                        height="932"
                         className="block md:hidden w-full h-[110%] absolute top-[-5%] object-cover opacity-80 will-change-transform"
-                        loading="lazy"
-                        decoding="async"
                     />
                     <div className="absolute inset-0 bg-black/40" />
 
@@ -86,23 +80,15 @@ const HeroSection = React.memo(() => {
                     <img
                         src={ASSETS.heroExterior}
                         alt="Plane Exterior"
-                        width="1920"
-                        height="1080"
                         className="hidden md:block w-full h-full object-cover"
                         loading="eager"
                         decoding="sync"
-                        fetchpriority="high"
                     />
                     {/* Mobile Image */}
                     <img
                         src={ASSETS.heroExteriorMobile}
                         alt="Plane Exterior"
-                        width="430"
-                        height="932"
                         className="block md:hidden w-full h-[110%] absolute top-[-5%] object-cover will-change-transform"
-                        loading="eager"
-                        decoding="sync"
-                        fetchpriority="high"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 </motion.div>

@@ -10,9 +10,10 @@ import AmbientBackground from './components/AmbientBackground';
 import Lenis from 'lenis';
 import { ThemeProvider } from './context/ThemeContext';
 
-// Sections (Lazy Loaded for performance)
-const ExperienceSection = React.lazy(() => import('./components/sections/ExperienceSection'));
-const DestinationsSection = React.lazy(() => import('./components/sections/DestinationsSection'));
+// Sections
+import HeroSection from './components/sections/HeroSection';
+import ExperienceSection from './components/sections/ExperienceSection';
+import DestinationsSection from './components/sections/DestinationsSection';
 
 // Pages (Lazy Loaded for Performance)
 const About = React.lazy(() => import('./pages/About'));
@@ -39,12 +40,8 @@ const Home = React.memo(({ onBookClick }) => {
     return (
         <>
             <HeroSection onBookClick={onBookClick} onMenuClick={handleMenuClick} />
-            <Suspense fallback={<div className="h-[50vh] bg-primary" />}>
-                <ExperienceSection />
-            </Suspense>
-            <Suspense fallback={<div className="h-[50vh] bg-primary" />}>
-                <DestinationsSection />
-            </Suspense>
+            <ExperienceSection />
+            <DestinationsSection />
         </>
     );
 });
@@ -108,7 +105,7 @@ function AppContent() {
                 <AmbientBackground />
                 <div className="relative z-10 bg-transparent min-h-[100svh] text-white font-sans selection:bg-accent selection:text-black">
                     <Cursor />
-                    <AnimatePresence>
+                    <AnimatePresence mode='wait'>
                         {loading ? (
                             <Preloader key="preloader" onComplete={() => setLoading(false)} />
                         ) : (
@@ -116,7 +113,7 @@ function AppContent() {
                                 key="main-content"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                transition={{ duration: 0.5, ease: "easeOut" }}
+                                transition={{ duration: 1, ease: "easeOut" }}
                             >
                                 <Suspense fallback={
                                     <div className="min-h-screen flex items-center justify-center bg-black">
