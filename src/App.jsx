@@ -105,7 +105,7 @@ function AppContent() {
                 <AmbientBackground />
                 <div className="relative z-10 bg-transparent min-h-[100svh] text-white font-sans selection:bg-accent selection:text-black">
                     <Cursor />
-                    <AnimatePresence mode='wait'>
+                    <AnimatePresence>
                         {loading ? (
                             <Preloader key="preloader" onComplete={() => setLoading(false)} />
                         ) : (
@@ -113,7 +113,7 @@ function AppContent() {
                                 key="main-content"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                transition={{ duration: 1, ease: "easeOut" }}
+                                transition={{ duration: 0.5, ease: "easeOut" }}
                             >
                                 <Suspense fallback={
                                     <div className="min-h-screen flex items-center justify-center bg-black">

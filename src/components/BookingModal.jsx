@@ -36,7 +36,11 @@ const BookingModal = ({ isOpen, onClose }) => {
                 >
                     <div className={`${isDark ? 'bg-white/5 border-white/5' : 'bg-gray-50 border-gray-100'} p-6 border-b flex justify-between items-center transaction-colors duration-300`}>
                         <h3 className={`text-xl font-serif ${isDark ? 'text-white' : 'text-gray-900'}`}>Book Your Flight</h3>
-                        <button onClick={onClose} className={`${isDark ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-gray-900'} transition-colors`}>
+                        <button
+                            onClick={onClose}
+                            className={`${isDark ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-gray-900'} transition-colors`}
+                            aria-label="Close booking modal"
+                        >
                             <X size={20} />
                         </button>
                     </div>
