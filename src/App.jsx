@@ -54,7 +54,7 @@ const Layout = ({ onBookClick }) => {
     }, [pathname]);
 
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-[100dvh]">
             <Navbar
                 onBookClick={onBookClick}
                 isMobileMenuOpen={isMobileMenuOpen}
@@ -98,7 +98,7 @@ function AppContent() {
         <ThemeProvider>
             <Router>
                 <AmbientBackground />
-                <div className="relative z-10 bg-transparent min-h-screen text-white font-sans selection:bg-accent selection:text-black">
+                <div className="relative z-10 bg-transparent min-h-[100dvh] text-white font-sans selection:bg-accent selection:text-black">
                     <Cursor />
                     <AnimatePresence mode='wait'>
                         {loading && <Preloader onComplete={() => setLoading(false)} />}

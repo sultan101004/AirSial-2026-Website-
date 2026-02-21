@@ -33,7 +33,7 @@ const HeroSection = () => {
     const textY = useTransform(smoothProgress, [0, 0.2], [0, -50]); // Add upward movement for premium feel
 
     return (
-        <div ref={containerRef} className="h-[200vh] md:h-[250vh] relative bg-primary transition-colors duration-500"> {/* Kept height for scroll effect, but inner container handles view */}
+        <div ref={containerRef} className="h-[200dvh] md:h-[250dvh] relative bg-primary transition-colors duration-500"> {/* Kept height for scroll effect, but inner container handles view */}
             <div className="sticky top-0 h-[100dvh] w-full overflow-hidden flex items-center justify-center">
 
                 {/* Layer 1: Interior (Revealed after zoom) */}
@@ -53,7 +53,7 @@ const HeroSection = () => {
                     <img
                         src={ASSETS.heroInteriorMobile}
                         alt="Cabin Interior"
-                        className="block md:hidden w-full h-full object-cover opacity-80"
+                        className="block md:hidden w-full h-full object-cover opacity-80 will-change-transform"
                     />
                     <div className="absolute inset-0 bg-black/40" />
 
@@ -85,7 +85,7 @@ const HeroSection = () => {
                     <img
                         src={ASSETS.heroExteriorMobile}
                         alt="Plane Exterior"
-                        className="block md:hidden w-full h-full object-cover"
+                        className="block md:hidden w-full h-full object-cover will-change-transform"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 </motion.div>
