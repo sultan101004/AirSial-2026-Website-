@@ -14,11 +14,11 @@ const AmbientBackground = () => {
     }, []);
 
     const particles = React.useMemo(() => {
-        const count = (isLiteMode || isMobile) ? 4 : 20;
+        const count = isMobile ? 2 : (isLiteMode ? 4 : 12); // Further reduced for performance
         return [...Array(count)].map(() => ({
-            x: Math.random() * 100, // percentage for better responsiveness
+            x: Math.random() * 100,
             y: Math.random() * 100,
-            duration: Math.random() * 10 + 15,
+            duration: Math.random() * 10 + 20, // Slower, more elegant
             delay: Math.random() * 5
         }));
     }, [isLiteMode, isMobile]);

@@ -4,34 +4,23 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background-color: #111518;
-  color: #ffffff;
-  font-family: 'Inter', sans-serif;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 :root {
-  --bg-primary: #000000;
-  /* Default Dark */
+  --bg-primary: #111518;
+  --accent: #C0985A;
 }
 
 .theme-green {
   --bg-primary: #254F22;
-  /* Requested Green */
 }
 
 body {
   background-color: var(--bg-primary);
   color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.5s ease;
-  /* Smooth transition */
 }
 
 ::selection {
