@@ -11,12 +11,12 @@ const Preloader = ({ onComplete }) => {
                 if (prev === words.length - 1) {
                     clearInterval(interval);
                     setTextIndex(words.length - 1);
-                    setTimeout(onComplete, 200); // Near-instant handover
+                    setTimeout(onComplete, 800); // Wait on "AirSial" for extra impact
                     return prev;
                 }
                 return prev + 1;
             });
-        }, 250); // Blistering fast sequence (1s total)
+        }, 800); // Balanced sequence (3.2s total word time)
 
         return () => clearInterval(interval);
     }, [onComplete, words.length]);
@@ -24,7 +24,7 @@ const Preloader = ({ onComplete }) => {
     return (
         <motion.div
             initial={{ y: 0 }}
-            exit={{ y: "-100%", transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] } }} // Sharper exit
+            exit={{ y: "-100%", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } }} // Smoother exit
             className="fixed inset-0 z-[9999] bg-black flex items-center justify-center overflow-hidden"
         >
             <div className="flex flex-col items-center">
@@ -35,7 +35,7 @@ const Preloader = ({ onComplete }) => {
                             initial={{ opacity: 0, y: 40 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -40 }}
-                            transition={{ duration: 0.3, ease: "easeOut" }}
+                            transition={{ duration: 0.5, ease: "easeOut" }} // Smoother text fade
                             className="text-white text-4xl md:text-6xl font-serif tracking-widest uppercase text-center"
                         >
                             {words[textIndex]}
@@ -47,7 +47,7 @@ const Preloader = ({ onComplete }) => {
                 <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: "200px" }}
-                    transition={{ duration: 2, ease: "easeInOut" }}
+                    transition={{ duration: 3.2, ease: "linear" }} // Synced with total word time
                     className="mt-8 h-0.5 bg-accent"
                 />
             </div>
