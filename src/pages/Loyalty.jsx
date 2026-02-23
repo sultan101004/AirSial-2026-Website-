@@ -1,8 +1,9 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import TextReveal from '../components/TextReveal';
 import { Award, Crown, Zap, UserPlus } from 'lucide-react';
 
-const Loyalty = () => {
+const Loyalty = React.memo(() => {
     const tiers = [
         {
             name: "Silver",
@@ -109,6 +110,7 @@ const Loyalty = () => {
             </motion.div>
         </div>
     );
-};
+});
 
+Loyalty.displayName = 'Loyalty';
 export default Loyalty;

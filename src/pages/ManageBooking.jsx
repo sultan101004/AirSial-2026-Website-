@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import TextReveal from '../components/TextReveal';
 import { Loader, Utensils, Luggage, Armchair, CheckCircle } from 'lucide-react';
 
-const ManageBooking = () => {
+const ManageBooking = React.memo(() => {
     const [pnr, setPnr] = useState('');
     const [lastName, setLastName] = useState('');
     const [booking, setBooking] = useState(null);
@@ -153,6 +153,7 @@ const ManageBooking = () => {
             )}
         </div>
     );
-};
+});
 
+ManageBooking.displayName = 'ManageBooking';
 export default ManageBooking;

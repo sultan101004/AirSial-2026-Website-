@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { ASSETS } from '../constants';
 import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLiteMode } from '../context/LiteModeContext';
 
-const Navbar = ({ onBookClick, isMobileMenuOpen, setIsMobileMenuOpen }) => {
+const Navbar = React.memo(({ onBookClick, isMobileMenuOpen, setIsMobileMenuOpen }) => {
     const [activeMobileDropdown, setActiveMobileDropdown] = useState(null); // Mobile click state
     const { isLiteMode } = useLiteMode();
 
@@ -16,7 +16,7 @@ const Navbar = ({ onBookClick, isMobileMenuOpen, setIsMobileMenuOpen }) => {
         }
     };
 
-    const navLinks = [
+    const navLinks = useMemo(() => [
         {
             name: 'About Us',
             path: '/about',
@@ -52,7 +52,7 @@ const Navbar = ({ onBookClick, isMobileMenuOpen, setIsMobileMenuOpen }) => {
         },
         { name: 'Contact', path: '/contact' },
         { name: 'Feedback', path: '/feedback' },
-    ];
+    ], []);
 
     return (
         <nav className="absolute top-0 left-0 w-full px-6 py-2 md:py-4 md:px-12 z-[100] pointer-events-none">
@@ -197,6 +197,7 @@ const Navbar = ({ onBookClick, isMobileMenuOpen, setIsMobileMenuOpen }) => {
             )}
         </nav>
     );
-};
+});
 
+Navbar.displayName = 'Navbar';
 export default Navbar;

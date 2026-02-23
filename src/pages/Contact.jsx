@@ -1,8 +1,9 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import TextReveal from '../components/TextReveal';
 
-const Contact = () => {
+const Contact = React.memo(() => {
     return (
         <div className="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
             <motion.div
@@ -66,6 +67,7 @@ const Contact = () => {
             </div>
         </div>
     );
-};
+});
 
+Contact.displayName = 'Contact';
 export default Contact;

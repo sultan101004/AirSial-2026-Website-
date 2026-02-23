@@ -1,21 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useLiteMode } from '../context/LiteModeContext';
 import { motion } from 'framer-motion';
 
-const AmbientBackground = () => {
+const AmbientBackground = React.memo(() => {
     const { isLiteMode } = useLiteMode();
-    const [isMobile, setIsMobile] = React.useState(false);
+    // Initialize state synchronously if window exists to prevent flash/re-render
+    const [isMobile, setIsMobile] = useState(
+        typeof window !== 'undefined' ? window.innerWidth < 768 : false
+    );
 
-    React.useEffect(() => {
+    useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768);
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
+        window.addEventListener('resize', checkMobile, { passive: true });
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    const particles = React.useMemo(() => {
+    const particles = useMemo(() => {
         const count = isMobile ? 2 : (isLiteMode ? 4 : 12); // Further reduced for performance
-        return [...Array(count)].map(() => ({
+        return [...Array(count)].map((_, i) => ({
+            id: i,
             x: Math.random() * 100,
             y: Math.random() * 100,
             duration: Math.random() * 10 + 20, // Slower, more elegant
@@ -63,9 +66,9 @@ const AmbientBackground = () => {
 
             {/* Floating Particles (Stardust) - Reduced Count on mobile */}
             <div className="absolute inset-0 opacity-20">
-                {particles.map((particle, i) => ( // Minimal particles for mobile
+                {particles.map((particle) => ( // Minimal particles for mobile
                     <motion.div
-                        key={i}
+                        key={particle.id}
                         initial={{
                             left: `${particle.x}%`,
                             top: `${particle.y}%`,
@@ -89,6 +92,7 @@ const AmbientBackground = () => {
             <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
         </div>
     );
-};
+});
 
+AmbientBackground.displayName = 'AmbientBackground';
 export default AmbientBackground;

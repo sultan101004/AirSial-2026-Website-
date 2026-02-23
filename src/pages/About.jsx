@@ -1,8 +1,9 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import TextReveal from '../components/TextReveal';
 import { ASSETS } from '../constants';
 
-const About = () => {
+const About = React.memo(() => {
     return (
         <div className="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
             <motion.div
@@ -50,7 +51,7 @@ const About = () => {
                     viewport={{ once: true }}
                     className="rounded-2xl overflow-hidden border border-white/10"
                 >
-                    <img src={ASSETS.crewImage} alt="AirSial Crew" className="w-full object-cover h-96" />
+                    <img src={ASSETS.crewImage} alt="AirSial Crew" className="w-full object-cover h-96" loading="lazy" decoding="async" />
                 </motion.div>
             </div>
 
@@ -75,6 +76,7 @@ const About = () => {
             </div>
         </div>
     );
-};
+});
 
+About.displayName = 'About';
 export default About;

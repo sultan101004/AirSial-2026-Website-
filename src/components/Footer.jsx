@@ -1,10 +1,11 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Facebook, Instagram, Linkedin, Twitter, Phone, Mail } from 'lucide-react';
 import { ASSETS } from '../constants';
 import { Link } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
 
-const Footer = () => {
+const Footer = React.memo(() => {
     return (
         <footer className="bg-primary pt-24 pb-12 relative overflow-hidden text-sm transition-colors duration-500">
 
@@ -129,6 +130,7 @@ const Footer = () => {
             </div>
         </footer>
     );
-};
+});
 
+Footer.displayName = 'Footer';
 export default Footer;

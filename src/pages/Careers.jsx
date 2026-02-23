@@ -1,14 +1,15 @@
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import TextReveal from '../components/TextReveal';
 import { ArrowRight } from 'lucide-react';
 
-const Careers = () => {
-    const jobs = [
+const Careers = React.memo(() => {
+    const jobs = useMemo(() => [
         { title: "First Officer (A320)", location: "Karachi", type: "Flight Operations" },
         { title: "Cabin Crew", location: "Lahore / Islamabad", type: "In-Flight Services" },
         { title: "Aircraft Engineer (B1/B2)", location: "Sialkot", type: "Engineering" },
         { title: "Customer Service Officer", location: "Karachi", type: "Ground Operations" },
-    ];
+    ], []);
 
     return (
         <div className="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
@@ -54,6 +55,7 @@ const Careers = () => {
             </div>
         </div>
     );
-};
+});
 
+Careers.displayName = 'Careers';
 export default Careers;

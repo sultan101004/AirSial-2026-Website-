@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import TextReveal from '../components/TextReveal';
 import { Search, Plane, AlertTriangle, CheckCircle } from 'lucide-react';
 
-const FlightStatus = () => {
+const FlightStatus = React.memo(() => {
     const [searchQuery, setSearchQuery] = useState('');
     const [statusResult, setStatusResult] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -103,6 +103,7 @@ const FlightStatus = () => {
             </div>
         </div>
     );
-};
+});
 
+FlightStatus.displayName = 'FlightStatus';
 export default FlightStatus;

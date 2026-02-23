@@ -1,6 +1,7 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 
-const Feedback = () => {
+const Feedback = React.memo(() => {
     return (
         <div className="min-h-screen bg-primary transition-colors duration-500 pt-32 px-6 pb-20">
             <div className="container mx-auto max-w-3xl">
@@ -26,6 +27,7 @@ const Feedback = () => {
             </div>
         </div>
     );
-};
+});
 
+Feedback.displayName = 'Feedback';
 export default Feedback;
